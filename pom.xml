@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>enqs</groupId>
-	<artifactId>board-game-blog</artifactId>
+	<artifactId>custom-blog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>board-game-blog</name>
-	<description>Custom blog engine</description>
+	<name>custom-blog</name>
+	<description>My custom attempt to create blogging app</description>
 
 	<properties>
 		<java.version>14</java.version>

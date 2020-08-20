@@ -1,10 +1,10 @@
-package enqs.boardgameblog;
+package enqs.customblog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BoardGameBlogApplicationTests {
+class CustomBlogApplicationTests {
 
 	@Test
 	void contextLoads() {
