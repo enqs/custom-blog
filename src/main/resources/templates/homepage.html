@@ -5,13 +5,46 @@
     <meta charset="UTF-8">
     <title>BGB: Homepage</title>
 </head>
-<body>
+<p>
 
 <h2>Board Game Blog: Homepage</h2>
 <hr>
 
-<p th:text="'Current time: ' + ${currentTime}"/>
-<p th:text="'Current date: ' + ${currentDate}"/>
+<h3>Welcome to my humble homepage!</h3>
+
+<div th:if="${param.userName == null}">
+    <p th:text="'Would you care to introduce yourself?'"/>
+    <form th:action="@{homepage}">
+        <input type="text" th:name="userName" placeholder="How to call you?"/>
+        <input type="submit"/>
+    </form>
+</div>
+<div th:unless="${param.userName == null}">
+    <h4 th:text="'It is nice to meet you ' + ${param.userName} +' !!!'"/>
+    <a th:href="@{/homepage}">Forget about me...</a>
+</div>
+
+<br>
+<hr>
+<h4>It ain't much but here are some info:</h4>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="'Current time: '"></td>
+        <td th:text="${currentTime}"></td>
+    </tr>
+    <tr>
+        <td th:text="'Current date: '"></td>
+        <td th:text="${currentDate}"></td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
-</html>
+</p></html>

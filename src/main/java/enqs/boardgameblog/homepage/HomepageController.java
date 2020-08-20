@@ -11,10 +11,8 @@ public class HomepageController {
 
     @GetMapping("/homepage")
     public String showHomepage(Model model) {
-        String currentDate = getFormattedCurrentTimestamp("yyy-MM-dd");
-        String currentTime = getFormattedCurrentTimestamp("hh:mm:ss");
-        model.addAttribute("currentDate", currentDate);
-        model.addAttribute("currentTime", currentTime);
+        model.addAttribute("currentDate", getFormattedCurrentTimestamp("yyy-MM-dd"));
+        model.addAttribute("currentTime", getFormattedCurrentTimestamp("hh:mm:ss"));
         return "homepage";
     }
 
