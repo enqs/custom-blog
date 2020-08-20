@@ -1,4 +1,4 @@
-package enqs.boardgameblog.homepage;
+package enqs.customblog.homepage;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
