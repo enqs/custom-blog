@@ -49,6 +49,12 @@ body {
     justify-content: space-between;
 }
 
+.content {
+    margin: 0px 30px 0px 0px;
+    min-height: 100%;
+    width: 61.8034%;
+}
+
 /* ----------------------------------------------- */
 /* REUSABLE COMPONENTS */
 /* ----------------------------------------------- */
@@ -58,20 +64,16 @@ h1,
 h2,
 h3 {
     color: var(--primary-text-color);
-}
-
-h1,
-h2 {
     font-weight: 300;
     line-height: 120%;
+    
 }
 
 h1 {
     text-transform: uppercase;
-    font-size: 250%;
+    font-size: 200%;
     font-weight: 200;
-    word-spacing: 4px;
-    letter-spacing: 1px;
+    margin: 0px 0px 0px;
 }
 
 h2 {
@@ -127,7 +129,7 @@ input[type=submit] {
     color: var(--text-primary-color);
     text-transform: uppercase;
     display: inline-block;
-    padding: 5px 15px;
+    padding: 3px 10px;
     font-weight: 400;
     text-decoration: none;
     transition: background-color 0.2s, color 0.2s;
@@ -158,7 +160,7 @@ input[type=submit]:active,
 }
 
 .tag {
-    margin: 5px;
+    margin: 0px 5px 5px 0px;
     font-size: 90%;
     font-weight: 600;
 }
@@ -185,6 +187,13 @@ header {
 }
 
 .banner-text {
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+    font-size: 250%;
+    font-weight: 200;
+    line-height: 120%;
+    word-spacing: 4px;
+    letter-spacing: 1px;
     text-align: left;
 }
     
@@ -264,27 +273,25 @@ header {
 }
 
 /* ----------------------------------------------- */
-/* CONTENT: MAIN-MAGE */
+/* CONTENT: MAIN-PAGE */
 /* ----------------------------------------------- */
 
-.content {
-    margin: 0px 30px 0px 0px;
-    min-height: 100%;
-    width: 61.8034%;
-}
+/* ----- ARTICLE DESCRIPTION ----- */
 
-/* ----- ARTICLE INTRO ----- */
-
-.article-intro {
+.article-description {
     display: flex;
     align-items: center;
     justify-items: center;
     margin-bottom: 40px;
 }
 
-.article-intro img {
+.article-description img {
     width: 200px;
     height: 200px;
+}
+
+.article-data p {
+    margin-bottom: 5px;
 }
 
 .article-data {
@@ -309,6 +316,75 @@ header {
 .pages{
     display: flex;
     justify-content: center;
+}
+
+/* ----------------------------------------------- */
+/* CONTENT: ARTICLE */
+/* ----------------------------------------------- */
+
+/* ----- HEADER ----- */
+
+.article-header {
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 10px;
+}
+
+.article-hero {
+    padding-right: 20px;
+    width: 38.197%;
+    object-fit: contain;
+}
+
+.article-tags {
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.article-introduction .metadata {
+    margin-bottom: 10px;
+}
+
+.article-author,
+.article-date,
+.article-comments-count {
+    margin-right: 20px;
+}
+
+/* ----- BODY ----- */
+
+.article-body {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.article-body h2 {
+    margin-top: 30px;
+}
+
+.article-body p {
+    margin-bottom: 10px;
+}
+
+.article-body ul {
+    margin-left: 35px;
+    margin-bottom: 10px;
+    list-style: disc;
+}
+
+.align-left,
+.align-right {
+    margin-bottom: 10px;
+}
+
+.align-left {
+    float: left;
+    margin-right: 10px;
+}
+
+.align-right {
+    float: right;
+    margin-left: 10px;
 }
 
 /* ----------------------------------------------- */
