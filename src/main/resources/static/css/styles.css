@@ -62,7 +62,9 @@ body {
 /* ----- FORMATTING ----- */
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5 {
     color: var(--primary-text-color);
     font-weight: 300;
     line-height: 120%;
@@ -79,6 +81,22 @@ h1 {
 h2 {
     font-size: 161.8%;
     margin-bottom: 5px;
+}
+
+h3 {
+    text-transform: uppercase;
+    padding-bottom: 2px;
+    border-bottom: 3px solid var(--dark-primary-color);
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 110%;
+    font-weight: 200;
+}
+
+h5 {
+    font-size: 100%;
 }
 
 .metadata {
@@ -226,12 +244,6 @@ header {
     margin-bottom: 35px;
 }
 
-.sidebar h3 {
-    padding-bottom: 2px;
-    border-bottom: 3px solid var(--dark-primary-color);
-    margin-bottom: 10px;
-}
-
 /* ----- SEARCH ----- */
 
 .search-form-simple {
@@ -356,6 +368,7 @@ header {
 .article-body {
     padding-bottom: 20px;
     border-bottom: 1px solid var(--divider-color);
+    margin-bottom: 30px;    
 }
 
 .article-body h2 {
@@ -385,6 +398,55 @@ header {
 .align-right {
     float: right;
     margin-left: 10px;
+}
+
+/* ----- SIMILAR ARTICLES ----- */
+
+.articles-gallery {
+    display: flex;
+    justify-content: space-between;
+}
+
+.related-article {
+    width: 23%;
+    display: inline-block;
+}
+
+.related-article img {
+    width: 100%;
+}
+
+/* ----- COMMENTS ----- */
+
+.comments img {
+    width: 50px;
+}
+
+.comments .metadata {
+    font-size: 80%;
+    margin-bottom: 5px;
+}
+
+.comment-text {
+    margin-bottom: 20px;
+    padding: 0px 10px 10px;
+    font-style: italic;
+    border-left: 1px dotted var(--divider-color);
+    border-bottom: 1px dotted var(--divider-color);
+}
+
+/* ----- REPLY ----- */
+
+.reply-form input,
+.reply-form textarea {
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.reply-form p {
+    font-size: 90%;
+    color: var(--secondary-text-color);
+    
 }
 
 /* ----------------------------------------------- */
