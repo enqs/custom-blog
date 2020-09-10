@@ -54,159 +54,127 @@
                     </header>
                     <div class="layout">
                         <div class="content">
-                            <ul class="list-vertical">
-                                <li>
-                                    <a href="#" class="article-link">
-                                        <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
-                                            <div class="article-data">
-                                                <h2>Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</h2>
-                                                <p class="metadata">
-                                                    13 July 2020
-                                                </p>
-                                                <p>
-                                                    Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
-                                                </p>
-                                                <p>
-                                                    <a href="#" class="btn btn-ghost tag">#Lorem ipsum</a>
-                                                    <a href="#" class="btn btn-ghost tag">#Dolor sit amet</a>
-                                                    <a href="#" class="btn btn-ghost tag">#Consectetuer</a>
-                                                    <a href="#" class="btn btn-ghost tag">#Adipiscing elit</a>
-                                                    <a href="#" class="btn btn-ghost tag">#Aenean commodo</a>
-                                                </p>
-                                            </div>
+                            <form class="search-form" method="get" action="#">
+                                <input class="searchedPhrase" type="text" name="searchedPhrase" id="searchedPhrase" placeholder="Type searched phrase...">
+                                <div class="search-control">
+                                    <div class="search-configuration">
+                                        <div class="search-filters">
+                                            <span>Registred:</span> 
+                                            <label for="registred-after">after: </label>
+                                            <input type="date" name="registred-after" id="registred-after">
+                                            <label for="registred-before">before: </label>
+                                            <input type="date" name="registred-before" id="registred-before">
+                                            <label for="role">role: </label>
+                                            <select name="role" id="role">
+                                                <option value="any" selected>Any</option>
+                                                <option value="user">User</option>
+                                                <option value="writer">Writer</option>
+                                                <option value="moderator">Moderator</option>
+                                                <option value="admin">Admin</option>
+                                            </select>
                                         </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="article-link">
-                                        <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
-                                            <div class="article-data">
-                                                <h2>Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</h2>
-                                                <p class="metadata">
-                                                    11 July 2020
-                                                </p>
-                                                <p>
-                                                    A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
-                                                </p>
-                                                <p>
-                                                    <a href="#" class="btn btn-ghost tag">#EGET DOLOR</a>
-                                                    <a href="#" class="btn btn-ghost tag">#ET MAGNIS DIS</a>
-                                                    <a href="#" class="btn btn-ghost tag">#PELLENTESQUE EU</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="article-link">
-                                        <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
-                                            <div class="article-data">
-                                                <h2>Nemo enim ipsam voluptatem quia voluptas.</h2>
-                                                <p class="metadata">
-                                                    09 July 2020
-                                                </p>
-                                                <p>
-                                                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
-                                                </p>
-                                                <p>
-                                                    <a href="#" class="btn btn-ghost tag">#Lorem ipsum</a>
-                                                    <a href="#" class="btn btn-ghost tag">#AENEAN MASSAt</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="article-link">
-                                        <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
-                                            <div class="article-data">
-                                                <h2>Sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</h2>
-                                                <p class="metadata">
-                                                    05 July 2020
-                                                </p>
-                                                <p>
-                                                    The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.
-                                                </p>
-                                                <p>
-                                                    <a href="#" class="btn btn-ghost tag">#ADIPISCING ELIT</a>
-                                                    <a href="#" class="btn btn-ghost tag"> #LIGULA</a>
-                                                    <a href="#" class="btn btn-ghost tag">#AENEAN MASSA</a>
-                                                    <a href="#" class="btn btn-ghost tag">#Adipiscing elit</a>
-                                                    <a href="#" class="btn btn-ghost tag">#CUM SOCIIS NATOQUE</a>
-                                                    <a href="#" class="btn btn-ghost tag">#MONTES, NASCETUR RIDICULUS MUS</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="article-link">
-                                        <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
-                                            <div class="article-data">
-                                                <h2>Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est.</h2>
-                                                <p class="metadata">
-                                                    01 July 2020
-                                                </p>
-                                                <p>
-                                                    She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown.
-                                                </p>
-                                                <p>
-                                                    <a href="#" class="btn btn-ghost tag">#CONSECTETUER</a>
-                                                    <a href="#" class="btn btn-ghost tag">#PENATIBUS</a>
-                                                    <a href="#" class="btn btn-ghost tag">#AENEAN MASSA</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="article-link">
-                                        <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
-                                            <div class="article-data">
-                                                <h2>Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.</h2>
-                                                <p class="metadata">
-                                                    30 June 2020
-                                                </p>
-                                                <p>
-                                                    Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. On her way she met a copy.
-                                                </p>
-                                                <p>
-                                                    <a href="#" class="btn btn-ghost tag">#CONSECTETUER</a>
-                                                    <a href="#" class="btn btn-ghost tag">#PENATIBUS</a>
-                                                    <a href="#" class="btn btn-ghost tag">#AENEAN MASSA</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="article-link">
-                                        <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
-                                            <div class="article-data">
-                                                <h2>Maecenas nec odio et ante tincidunt tempus.</h2>
-                                                <p class="metadata">
-                                                    28 June 2020
-                                                </p>
-                                                <p>
-                                                    The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency.
-                                                </p>
-                                                <p>
-                                                    <a href="#" class="btn btn-ghost tag">#CONSECTETUER</a>
-                                                    <a href="#" class="btn btn-ghost tag">#PENATIBUS</a>
-                                                    <a href="#" class="btn btn-ghost tag">#AENEAN MASSA</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
+                                    </div>
+                                    <input type="submit" value="SEARCH!">
+                                </div>
+                            </form>
+                            <div class="found-users">
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-1.jpg">
+                                    <p>Tina Rhodes</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-2.jpg">
+                                    <p>Nathaniel Mccoy</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-3.jpg">
+                                    <p>Raul Johnson</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-4.jpg">
+                                    <p>Emma Mitchelle</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                                <a class="user-presentation" href="#">
+                                    <img src="/static/img/user-placeholder-0.jpg">
+                                    <p>Anonymous User</p>
+                                </a>
+                            </div>
                             <div class="pagination">
                                 <a class="btn-selected" href="#">1</a>
                                 <a href="#">2</a>

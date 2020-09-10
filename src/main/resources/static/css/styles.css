@@ -239,16 +239,16 @@ input[type=submit]:active,
     color: var(--secondary-text-color);
 }
 
-/* ----- ARTICLE DESCRIPTION ----- */
+/* ----- ARTICLE PRESENTATION ----- */
 
-.article-description {
+.article-presentation {
     display: flex;
     align-items: center;
     justify-items: center;
     margin-bottom: 40px;
 }
 
-.article-description img {
+.article-presentation img {
     width: 200px;
     height: 200px;
 }
@@ -387,7 +387,7 @@ header {
 }
 
 /* ----------------------------------------------- */
-/* CONTENT: ARTICLE */
+/* ARTICLE */
 /* ----------------------------------------------- */
 
 /* ----- HEADER ----- */
@@ -503,6 +503,120 @@ header {
     font-size: 90%;
     color: var(--secondary-text-color);
     
+}
+
+/* ----------------------------------------------- */
+/* USER */
+/* ----------------------------------------------- */
+
+/* ----- USER PRESENTATION ----- */
+
+.found-users {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.user-presentation {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+    border: 1px solid var(--divider-color);
+    margin-bottom: 40px;
+}
+
+.found-users a:link,
+.found-users a:visited {
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.user-presentation img {
+    width: 150px;
+}
+
+.user-presentation p {
+    text-align: center;
+}
+
+.user-container {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-container h3 {
+    width: 100%
+}
+
+.user-details {
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px solid var(--divider-color);
+    border-left: 1px solid var(--divider-color);
+    margin-bottom: 30px;
+}
+
+.user-details img {
+    width: 200px;
+    height: 200px;
+    margin-right: 10px;
+}
+
+.user-informations {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.user-information {
+    flex: 1;
+    display: flex;
+    padding: 0px 30px;
+}
+
+.user-information:nth-child(odd) {
+    background-color: var(--light-primary-color);
+}
+
+.user-information-name,
+.user-information-value {
+    padding-top: 6px;
+}
+
+.user-information-name {
+    padding-right: 20px;
+    width: 100px;
+}
+
+.user-information-value {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.edit-user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 5px;
+    border-left: 1px solid var(--divider-color);
+}
+
+.edited-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edited-data label {
+    margin-right: 5px;
+}
+
+.edited-data input {
+    padding: 3px;
 }
 
 /* ----------------------------------------------- */
