@@ -99,10 +99,6 @@ h5 {
     font-size: 100%;
 }
 
-.metadata {
-    color: var(--secondary-text-color);
-}
-
 /* ----- LISTS ----- */
 
 .list-horizontal {
@@ -181,6 +177,112 @@ input[type=submit]:active,
     margin: 0px 5px 5px 0px;
     font-size: 90%;
     font-weight: 600;
+}
+
+/* ----- SEARCH FORM ----- */
+
+.search-form{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--divider-color);
+    margin-bottom: 20px;
+}
+
+.searchedPhrase,
+.search-scope {
+    margin-bottom: 10px;
+}
+
+.searchedPhrase {
+    padding: 10px;
+    flex: 1;
+}
+
+.search-control {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-configuration {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    flex: 1;
+}
+
+.search-scope {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox label {
+    margin-right: 5px;
+}
+
+.search-filters {
+    flex: 1;
+    display: flex;
+    justify-content: space-between
+}
+
+.search-filters input,
+.search-filters select {
+    padding-bottom: 1px;
+    border: 0px;
+    color: var(--secondary-text-color);
+}
+
+/* ----- ARTICLE DESCRIPTION ----- */
+
+.article-description {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 40px;
+}
+
+.article-description img {
+    width: 200px;
+    height: 200px;
+}
+
+.article-data p {
+    margin-bottom: 5px;
+}
+
+.article-data {
+    padding: 0px 10px;
+}
+
+.metadata {
+    color: var(--secondary-text-color);
+}
+
+/* ----- PAGINATION ----- */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+    margin: 20px 100px 10px;
+    border-top: 1px solid var(--divider-color);
+}
+
+.pagination a {
+    padding: 5px 10px;
+}
+
+.pages{
+    display: flex;
+    justify-content: center;
 }
 
 /* ----------------------------------------------- */
@@ -282,52 +384,6 @@ header {
 
 .comment-shortcut {
     margin-bottom: 10px;
-}
-
-/* ----------------------------------------------- */
-/* CONTENT: MAIN-PAGE */
-/* ----------------------------------------------- */
-
-/* ----- ARTICLE DESCRIPTION ----- */
-
-.article-description {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    margin-bottom: 40px;
-}
-
-.article-description img {
-    width: 200px;
-    height: 200px;
-}
-
-.article-data p {
-    margin-bottom: 5px;
-}
-
-.article-data {
-    padding: 0px 10px;
-}
-
-/* ----- PAGINATION ----- */
-
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 15px;
-    margin: 20px 75px 10px;
-    border-top: 1px solid var(--divider-color);
-}
-
-.pagination a {
-    padding: 5px 10px;
-}
-
-.pages{
-    display: flex;
-    justify-content: center;
 }
 
 /* ----------------------------------------------- */

@@ -54,6 +54,52 @@
                     </header>
                     <div class="layout">
                         <div class="content">
+                            <form class="search-form" method="get" action="#">
+                                <input class="searchedPhrase" type="text" name="searchedPhrase" id="searchedPhrase" placeholder="Type searched phrase...">
+                                <div class="search-control">
+                                    <div class="search-configuration">
+                                        <div class="search-scope">
+                                            <span>Search scope: </span>
+                                            <div class="checkbox">
+                                                <label for="search-tittle">Tittle</label>
+                                                <input type="checkbox" name="search-tittle" id="search-tittle">
+                                            </div>
+                                            <div class="checkbox">
+                                                <label for="search-description">Description</label>
+                                                <input type="checkbox" name="search-description" id="search-description">
+                                            </div>
+                                            <div class="checkbox">
+                                                <label for="search-article">Article</label>
+                                                <input type="checkbox" name="search-article" id="search-article">
+                                            </div>
+                                            <div class="checkbox">
+                                                <label for="search-comments">Comments</label>
+                                                <input type="checkbox" name="search-comments" id="search-comments">
+                                            </div>
+                                            <div class="checkbox">
+                                                <label for="search-tags">Tags</label>
+                                                <input type="checkbox" name="search-tags" id="search-tags">
+                                            </div>
+                                        </div>
+                                        <div class="search-filters">
+                                            <span>Published:</span> 
+                                            <label for="published-after">after: </label>
+                                            <input type="date" name="published-after" id="published-after">
+                                            <label for="published-before">before: </label>
+                                            <input type="date" name="published-before" id="published-before">
+                                            <label for="published-by">by: </label>
+                                            <select name="published-by" id="published-by">
+                                                <option value="anybody" selected>Anybody</option>
+                                                <option value="Jon Miles">Jon Miles</option>
+                                                <option value="Daisy Gutierrez">Daisy Gutierrez</option>
+                                                <option value="Ethan Garcia">Ethan Garcia</option>
+                                                <option value="Serenity Owens">Serenity Owens</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="submit" value="SEARCH!">
+                                </div>
+                            </form>
                             <ul class="list-vertical">
                                 <li>
                                     <a href="#" class="article-description_link">
@@ -223,7 +269,7 @@
                                 ...
                                 &nbsp;
                                 <a href="#">Last page &#187;</a>
-                            </div>
+</div>
                             <div class="pages">
                                 Page 1 of 300
                             </div>
