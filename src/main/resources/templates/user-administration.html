@@ -55,7 +55,10 @@
                     <div class="layout">
                         <div class="content">
                             <div class="user-container">
-                                <h3>Userpage:</h3>
+                                <h3>
+                                    <span>User administration:</span> 
+                                    <a class="btn btn-full" href="#">Log out</a>
+                                </h3>
                                 <div class="user-details">
                                     <img src="/static/img/user-placeholder-1.jpg">
                                     <div class="user-informations">
@@ -96,6 +99,14 @@
                                         <div class="edited-data">
                                             <label for="user-surname">Surname: </label>
                                             <input type="text" name="user-surname" id="user-surname" placeholder="Rhodes">
+                                        </div>
+                                        <div class="edited-data">
+                                            <label for="user-login">Login: </label>
+                                            <input type="text" name="user-login" id="user-login" placeholder="TiRho">
+                                        </div>
+                                        <div class="edited-data">
+                                            <label for="user-password">Password: </label>
+                                            <input type="password" name="user-password" id="user-password" placeholder="******">
                                         </div>
                                         <input type="submit" value="Save changes">
                                      </form>

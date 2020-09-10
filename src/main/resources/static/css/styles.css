@@ -506,7 +506,7 @@ header {
 }
 
 /* ----------------------------------------------- */
-/* USER */
+/* USERS */
 /* ----------------------------------------------- */
 
 /* ----- USER PRESENTATION ----- */
@@ -549,6 +549,8 @@ header {
 .user-container h3 {
     width: 100%
 }
+
+/* ----- USER DETAILS ----- */
 
 .user-details {
     display: inline-flex;
@@ -596,6 +598,15 @@ header {
     font-style: italic;
     font-weight: bold;
 }
+
+/* ----- USER ADMINISTRATION ----- */
+
+.user-container h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 
 .edit-user-form {
     display: flex;
