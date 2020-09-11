@@ -701,8 +701,18 @@ header {
     margin-right: 5px;
 }
 
+.edited-data label,
+.edited-data input,
+.edited-data select {
+    font-size: 90%;
+}
+
 .edited-data input {
     padding: 3px;
+}
+
+.edited-data select {
+    padding: 2px;
 }
 
 /* ----------------------------------------------- */
