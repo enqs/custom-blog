@@ -33,21 +33,21 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="btn btn-full " href="#">Explore</a>
+                                    <a class="btn btn-full " href="#">Random article</a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-full " href="#">Explore articles</a>
                                 </li>
                                 <li>
                                     <a class="btn btn-full " href="#">Users</a>
                                 </li>
-                                <li>
-                                    <a class="btn btn-full " href="#">Statistics</a>
-                                </li>
                             </ul>
                             <ul class="list-horizontal">
                                 <li>
-                                    <a class="btn btn-full " href="#">Administration</a>
+                                    <a class="btn btn-full " href="#">Statistics</a>
                                 </li>
                                 <li>
-                                    <a class="btn btn-full " href="#">Userpage</a>
+                                    <a class="btn btn-full " href="#">About</a>
                                 </li>
                             </ul>
                         </nav>
@@ -223,11 +223,45 @@
                             </div>
                         </div>
                         <aside class="sidebar">
-                            <section>
+                            <section class="search-simple">
                                 <form method="get" action="#" class="search-form-simple">
                                     <input type="text" name="searchedPhrase" placeholder="Type searched phrase..."/>
                                     <input type="submit" value="Search!"/>
                                 </form>
+                            </section>
+                            <section class="user-panel">
+                                <h3>User panel:</h3>
+                                <div class="user-panel-container">
+                                    <img src="/static/img/user-placeholder-2.jpg">
+                                    <div class="user">
+                                        <div>
+                                            <p>Logged as:</p>
+                                            <p>Nathaniel Mccoy</p>
+                                        </div>
+                                        <div>
+                                            <p>Acces level:</p>
+                                            <p>Administrator</p>
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <div class="user-actions">
+                                            <a class="btn btn-full" href="#">Userpage</a>
+                                            <a class="btn btn-full" href="#">Log out</a>
+                                        </div>
+                                        <div class="administration-actions">
+                                            <span>Article:</span>
+                                            <a class="btn btn-ghost" href="#">New</a>
+                                            <a class="btn btn-ghost" href="#">Edit</a>
+                                            <a class="btn btn-ghost" href="#">Del</a>
+                                        </div>
+                                        <div class="administration-actions">
+                                            <span>User:</span>
+                                            <a class="btn btn-ghost" href="#">New</a>
+                                            <a class="btn btn-ghost" href="#">Edit</a>
+                                            <a class="btn btn-ghost" href="#">Del</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </section>
                             <section class="latest-articles">
                                 <h3>Latest articles:</h3>

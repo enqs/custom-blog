@@ -143,6 +143,7 @@ input[type=submit] {
     color: var(--text-primary-color);
     text-transform: uppercase;
     display: inline-block;
+    border-bottom: 0px;
     padding: 3px 10px;
     font-weight: 400;
     text-decoration: none;
@@ -329,6 +330,8 @@ header {
     height: 50px;
     line-height: 40px;
     font-size: 115%;
+    padding-left: 20px; 
+    padding-right: 20px; 
 }
 
 /* ----------------------------------------------- */
@@ -344,6 +347,78 @@ header {
 
 .sidebar section {
     margin-bottom: 35px;
+}
+
+/* ----- USER PANEL ----- */
+
+.user-panel-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: content-box;
+    height: 100px;
+}
+
+.user-panel-container img {
+    margin-right: 5px;
+    height: 100%;
+    width: auto;
+}
+
+.user {
+    height: 100%;
+    font-size: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 5px;
+    border-right: 1px dotted var(--divider-color);
+}
+
+.user p:first-child {
+    color: var(--secondary-text-color);
+    font-style: italic; 
+} 
+
+.actions {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-left: 5px;
+}
+
+.actions .btn,
+.actions span {
+    font-size: 90%;
+}
+
+.user-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted var(--divider-color);
+}
+
+.administration-actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.administration-actions span {
+    text-transform: uppercase;
+    color: var(--text-primary-color);
+    background-color: var(--default-primary-color);
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    padding: 3px 5px;
 }
 
 /* ----- SEARCH ----- */
@@ -555,7 +630,7 @@ header {
 .user-details {
     display: inline-flex;
     justify-content: space-between;
-    padding: 5px;
+    padding: 5px 0px 5px 5px;
     border-bottom: 1px solid var(--divider-color);
     border-left: 1px solid var(--divider-color);
     margin-bottom: 30px;
