@@ -87,7 +87,7 @@ h3 {
     text-transform: uppercase;
     padding-bottom: 2px;
     border-bottom: 3px solid var(--dark-primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 h4 {
@@ -372,7 +372,6 @@ header {
     flex-direction: column;
     justify-content: space-between;
     padding-right: 5px;
-    border-right: 1px dotted var(--divider-color);
 }
 
 .user p:first-child {
@@ -400,7 +399,6 @@ header {
     display: flex;
     justify-content: space-between;
     padding-bottom: 5px;
-    border-bottom: 1px dotted var(--divider-color);
 }
 
 .administration-actions {
@@ -713,6 +711,42 @@ header {
 
 .edited-data select {
     padding: 2px;
+}
+
+/* ----------------------------------------------- */
+/* ARTICLE EDITOR */
+/* ----------------------------------------------- */
+
+.article-edit-form {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.article-edit-form label {
+    padding: 5px 10px;
+    border-left: 1px solid var(--divider-color);
+    
+}
+
+.article-edit-form input,
+.article-edit-form textarea {
+    outline: none;
+    padding: 10px 15px;
+    border: 1px solid var(--divider-color);
+    margin-bottom: 20px;
+}
+
+#article-tags {
+    height: 40px;
+}
+
+#article-description {
+    height: 100px;
+}
+
+#article-content {
+    height: 500px;
 }
 
 /* ----------------------------------------------- */
