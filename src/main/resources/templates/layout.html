@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+
+        <title>Custom Blog Demo</title>
+    </head>
+
+    <body>
+            <div class="wrapper">
+                <div class="container">
+                    <header>
+                        <div class="banner">
+                            <p class="banner-text">
+                                Awesome Blog!<br>
+                                About Great stuff! <br>
+                                For incredible people!
+                            </p>
+                              <img class="logo" 
+                                    src="/static/img/logo.png" 
+                                    alt="Blog logo">
+                        </div>
+                        <nav class="main-nav">
+                            <ul class="list-horizontal">
+                                <li>
+                                    <a class="btn btn-full btn-selected" href="#">
+                                        Main Page
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-full " href="#">Random article</a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-full " href="#">Explore articles</a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-full " href="#">Users</a>
+                                </li>
+                            </ul>
+                            <ul class="list-horizontal">
+                                <li>
+                                    <a class="btn btn-full " href="#">Statistics</a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-full " href="#">About</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </header>
+                    <div class="layout">
+                        <div class="content">
+
+                        </div>
+                        <aside class="sidebar">
+                            <section class="search-simple">
+                                <form method="get" action="#" class="search-form-simple">
+                                    <input type="text" name="searchedPhrase" placeholder="Type searched phrase..."/>
+                                    <input type="submit" value="Search!"/>
+                                </form>
+                            </section>
+                            <section class="user-panel">
+                                <h3>User panel:</h3>
+                                <div class="user-panel-container">
+                                    <img src="/static/img/user-placeholder-2.jpg">
+                                    <div class="user">
+                                        <div>
+                                            <p>Logged as:</p>
+                                            <p>Nathaniel Mccoy</p>
+                                        </div>
+                                        <div>
+                                            <p>Acces level:</p>
+                                            <p>Administrator</p>
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <div class="user-actions">
+                                            <a class="btn btn-full" href="#">Userpage</a>
+                                            <a class="btn btn-full" href="#">Log out</a>
+                                        </div>
+                                        <div class="administration-actions">
+                                            <span>Article:</span>
+                                            <a class="btn btn-ghost" href="#">New</a>
+                                            <a class="btn btn-ghost" href="#">Edit</a>
+                                            <a class="btn btn-ghost" href="#">Del</a>
+                                        </div>
+                                        <div class="administration-actions">
+                                            <span>User:</span>
+                                            <a class="btn btn-ghost" href="#">New</a>
+                                            <a class="btn btn-ghost" href="#">Edit</a>
+                                            <a class="btn btn-ghost" href="#">Del</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="latest-articles">
+                                <h3>Latest articles:</h3>
+                                <ul class="list-vertical">
+                                    <li>
+                                        <img class="small-image" src="/static/img/beanstalk.png" alt="Article's small image">
+                                        <div class="article-shortcut">
+                                            <a href="#">
+                                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
+                                            </a>
+                                            <p class="metadata">
+                                                13 July 2020
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <img class="small-image" src="/static/img/beanstalk.png" alt="Article's small image">
+                                        <div class="article-shortcut">
+                                            <a href="#">
+                                                Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
+                                            </a>
+                                            <p class="metadata">
+                                                11 July 2020
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <img class="small-image" src="/static/img/beanstalk.png" alt="Article's small image">
+                                        <div class="article-shortcut">
+                                            <a href="#">
+                                                Nemo enim ipsam voluptatem quia voluptas.
+                                            </a>
+                                            <p class="metadata">
+                                                09 July 2020
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <img class="small-image" src="/static/img/beanstalk.png" alt="Article's small image">
+                                        <div class="article-shortcut">
+                                            <a href="#">
+                                                Sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.
+                                            </a>
+                                            <p class="metadata">
+                                                05 July 2020
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <img class="small-image" src="/static/img/beanstalk.png" alt="Article's small image">
+                                        <div class="article-shortcut">
+                                            <a href="#">
+                                                Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est.
+                                            </a>
+                                            <p class="metadata">
+                                                01 July 2020
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </section>
+                            <section class="latest-comments">
+                                <h3>Latest comments:</h3>
+                                <ul class="list-vertical">
+                                    <li>
+                                        <div class="comment-shortcut">
+                                            <a href="#">Vivan</a> in:
+                                            <a href="#"> "Qui dolorem ipsum quia dolor sit amet, consectetur, adipisci."</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="comment-shortcut">
+                                            <a href="#">Becky</a> in:
+                                            <a href="#"> "Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="comment-shortcut">
+                                            <a href="#">Maurice </a> in:
+                                            <a href="#"> "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit."</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="comment-shortcut">
+                                            <a href="#">Susan </a> in:
+                                            <a href="#"> "Laboriosam, nisi ut aliquid ex ea commodi consequatur?"</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="comment-shortcut">
+                                            <a href="#">Sonia </a> in:
+                                            <a href="#"> "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="comment-shortcut">
+                                            <a href="#">Angel </a> in:
+                                            <a href="#"> "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias."</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="comment-shortcut">
+                                            <a href="#">Peter </a> in:
+                                            <a href="#"> "Excepturi sint occaecati cupiditate non provident."</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="comment-shortcut">
+                                            <a href="#">Cindy </a> in:
+                                            <a href="#"> "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="comment-shortcut">
+                                            <a href="#">Darryl </a> in:
+                                            <a href="#"> " Et harum quidem rerum facilis est et expedita distinctio."</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="comment-shortcut">
+                                            <a href="#">Kim </a> in:
+                                            <a href="#"> "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere."</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </section>
+                            <section class="tag-container">                                
+                                <h3>Taglist: </h3>
+                                <a href="#" class="btn btn-ghost tag">#Lorem ipsum</a>
+                                <a href="#" class="btn btn-ghost tag">#Dolor sit amet</a>
+                                <a href="#" class="btn btn-ghost tag">#Consectetuer</a>
+                                <a href="#" class="btn btn-ghost tag">#Adipiscing elit</a>
+                                <a href="#" class="btn btn-ghost tag">#Aenean commodo</a>
+                                <a href="#" class="btn btn-ghost tag">#Ligula </a>
+                                <a href="#" class="btn btn-ghost tag">#Eget dolor</a>
+                                <a href="#" class="btn btn-ghost tag">#Aenean massa</a>
+                                <a href="#" class="btn btn-ghost tag">#Cum sociis natoque</a>
+                                <a href="#" class="btn btn-ghost tag">#Penatibus </a>
+                                <a href="#" class="btn btn-ghost tag">#Et magnis dis</a>
+                                <a href="#" class="btn btn-ghost tag">#Parturient</a>
+                                <a href="#" class="btn btn-ghost tag">#Montes, nascetur ridiculus mus</a>
+                                <a href="#" class="btn btn-ghost tag">#Donec quam felis</a>
+                                <a href="#" class="btn btn-ghost tag">#Ultricies nec</a>
+                                <a href="#" class="btn btn-ghost tag">#Pellentesque eu</a>
+                            </section>
+                        </aside>
+                    </div>
+                </div>
+                <footer>
+                    <p>
+                        © Copyright 2020, All Rights Reserved. Enqs.
+                    </p>
+                </footer>
+            </div>  
+    </body>
