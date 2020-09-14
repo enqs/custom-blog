@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
-        <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
 
         <title>Custom Blog Demo</title>
     </head>
@@ -22,7 +22,7 @@
                                 For incredible people!
                             </p>
                               <img class="logo" 
-                                    src="/static/img/logo.png" 
+                                    src="/img/logo.png"
                                     alt="Blog logo">
                         </div>
                         <nav class="main-nav">
@@ -58,7 +58,7 @@
                                 <li>
                                     <a href="#" class="article-link">
                                         <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
+                                            <img src="/img/article-hero-placeholder.jpg">
                                             <div class="article-data">
                                                 <h2>Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</h2>
                                                 <p class="metadata">
@@ -81,7 +81,7 @@
                                 <li>
                                     <a href="#" class="article-link">
                                         <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
+                                            <img src="/img/article-hero-placeholder.jpg">
                                             <div class="article-data">
                                                 <h2>Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</h2>
                                                 <p class="metadata">
@@ -102,7 +102,7 @@
                                 <li>
                                     <a href="#" class="article-link">
                                         <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
+                                            <img src="/img/article-hero-placeholder.jpg">
                                             <div class="article-data">
                                                 <h2>Nemo enim ipsam voluptatem quia voluptas.</h2>
                                                 <p class="metadata">
@@ -122,7 +122,7 @@
                                 <li>
                                     <a href="#" class="article-link">
                                         <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
+                                            <img src="/img/article-hero-placeholder.jpg">
                                             <div class="article-data">
                                                 <h2>Sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</h2>
                                                 <p class="metadata">
@@ -146,7 +146,7 @@
                                 <li>
                                     <a href="#" class="article-link">
                                         <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
+                                            <img src="/img/article-hero-placeholder.jpg">
                                             <div class="article-data">
                                                 <h2>Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est.</h2>
                                                 <p class="metadata">
@@ -167,7 +167,7 @@
                                 <li>
                                     <a href="#" class="article-link">
                                         <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
+                                            <img src="/img/article-hero-placeholder.jpg">
                                             <div class="article-data">
                                                 <h2>Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.</h2>
                                                 <p class="metadata">
@@ -188,7 +188,7 @@
                                 <li>
                                     <a href="#" class="article-link">
                                         <div class="article-presentation">
-                                            <img src="/static/img/article-hero-placeholder.jpg">
+                                            <img src="/img/article-hero-placeholder.jpg">
                                             <div class="article-data">
                                                 <h2>Maecenas nec odio et ante tincidunt tempus.</h2>
                                                 <p class="metadata">
@@ -238,7 +238,7 @@
                             <section class="user-panel">
                                 <h3>User panel:</h3>
                                 <div class="user-panel-container">
-                                    <img src="/static/img/user-placeholder-2.jpg">
+                                    <img src="/img/user-placeholder-2.jpg">
                                     <div class="user">
                                         <div>
                                             <p>Logged as:</p>
@@ -273,7 +273,7 @@
                                 <h3>Latest articles:</h3>
                                 <ul class="list-vertical">
                                     <li>
-                                        <img class="small-image" src="/static/img/beanstalk.png" alt="Article's small image">
+                                        <img class="small-image" src="/img/beanstalk.png" alt="Article's small image">
                                         <div class="article-shortcut">
                                             <a href="#">
                                                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
@@ -284,7 +284,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <img class="small-image" src="/static/img/beanstalk.png" alt="Article's small image">
+                                        <img class="small-image" src="/img/beanstalk.png" alt="Article's small image">
                                         <div class="article-shortcut">
                                             <a href="#">
                                                 Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
@@ -295,7 +295,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <img class="small-image" src="/static/img/beanstalk.png" alt="Article's small image">
+                                        <img class="small-image" src="/img/beanstalk.png" alt="Article's small image">
                                         <div class="article-shortcut">
                                             <a href="#">
                                                 Nemo enim ipsam voluptatem quia voluptas.
@@ -306,7 +306,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <img class="small-image" src="/static/img/beanstalk.png" alt="Article's small image">
+                                        <img class="small-image" src="/img/beanstalk.png" alt="Article's small image">
                                         <div class="article-shortcut">
                                             <a href="#">
                                                 Sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.
@@ -317,7 +317,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <img class="small-image" src="/static/img/beanstalk.png" alt="Article's small image">
+                                        <img class="small-image" src="/img/beanstalk.png" alt="Article's small image">
                                         <div class="article-shortcut">
                                             <a href="#">
                                                 Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est.
