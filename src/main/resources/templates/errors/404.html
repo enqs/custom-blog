@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout (~{::content})}">
+
+
+<body>
+<div th:fragment="content">
+    <div class="error">
+        <h3>
+            <input type="button" value="Go back!" onclick="history.back()">
+            <span>ERROR 404: I'm sorry but this page does not exist</span>
+            <input type="button" value="Go back!" onclick="history.back()">
+        </h3>
+        <img src="/img/404.jpg">
+        <a href="https://www.freepik.com/vectors/business">Business vector created by freepik - www.freepik.com</a>
+    </div>
+</div>
+</body>

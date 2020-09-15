@@ -142,14 +142,16 @@ a:active {
 
 /* ----- BUTTONS ----- */
 
-input[type=submit] {
+input[type=submit],
+input[type=button] {
     border: 0px transparent var(--divider-color);
     border-radius: 0px;
 }
 
 .btn:link,
 .btn:visited,
-input[type=submit] {
+input[type=submit],
+input[type=button] {
     color: var(--text-primary-color);
     text-transform: uppercase;
     display: inline-block;
@@ -162,7 +164,8 @@ input[type=submit] {
 
 .btn-full:link,
 .btn-full:visited,
-input[type=submit] {
+input[type=submit],
+input[type=button] {
     background-color: var(--dark-primary-color);
 }
 
@@ -176,6 +179,8 @@ input[type=submit] {
 .btn:active,
 input[type=submit]:hover, 
 input[type=submit]:active,
+input[type=button]:hover,
+input[type=button]:active,
 .btn-selected:link,
 .btn-selected:visited,
 .btn-selected:hover,
@@ -650,7 +655,7 @@ header {
     margin-right: 10px;
 }
 
-.user-informations {
+.user-data {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;

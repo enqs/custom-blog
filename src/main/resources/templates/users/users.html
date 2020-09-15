@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout (~{::content})}">
+
+<body>
+<div th:fragment="content">
+    <form class="search-form" method="get" action="#" th:action="@{/503}">
+        <input class="searchedPhrase" type="text" name="searchedPhrase" id="searchedPhrase"
+               placeholder="Type searched phrase...">
+        <div class="search-control">
+            <div class="search-configuration">
+                <div class="search-filters">
+                    <span>Registered:</span>
+                    <label for="registered-after">after: </label>
+                    <input type="date" name="registered-after" id="registered-after">
+                    <label for="registered-before">before: </label>
+                    <input type="date" name="registered-before" id="registered-before">
+                    <label for="role">role: </label>
+                    <select name="role" id="role">
+                        <option value="any" selected>Any</option>
+                        <option value="user">User</option>
+                        <option value="writer">Writer</option>
+                        <option value="moderator">Moderator</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+            </div>
+            <input type="submit" value="SEARCH!">
+        </div>
+    </form>
+    <div class="found-users">
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-1.jpg">
+            <p>Tina Rhodes</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-2.jpg">
+            <p>Nathaniel Mccoy</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-3.jpg">
+            <p>Raul Johnson</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-4.jpg">
+            <p>Emma Mitchelle</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+        <a class="user-presentation" href="#" th:href="@{/users/1}">
+            <img src="/img/user-placeholder-0.jpg">
+            <p>Anonymous User</p>
+        </a>
+    </div>
+    <div class="pagination">
+        <a class="btn-selected" href="#">1</a>
+        <a href="#" th:href="@{/503}">2</a>
+        <a href="#" th:href="@{/503}">3</a>
+        <a href="#" th:href="@{/503}">4</a>
+        <a href="#" th:href="@{/503}">5</a>
+        <a href="#" th:href="@{/503}">6</a>
+        <a href="#" th:href="@{/503}">7</a>
+        <a href="#" th:href="@{/503}">8</a>
+        <a href="#" th:href="@{/503}">9</a>
+        &nbsp;
+        <a href="#" th:href="@{/503}">+10</a>
+        &nbsp;
+        ...
+        &nbsp;
+        <a href="#" th:href="@{/503}">Last page &#187;</a>
+    </div>
+    <div class="pages">
+        Page 1 of 300
+    </div>
+</div>
+
+</body>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout (~{::content})}">
+
+<body>
+<div th:fragment="content">
+    <div class="article-editor">
+        <h3>Article editor:</h3>
+        <form method="post" action="#" th:action="@{/503}" class="article-edit-form">
+            <label for="article-tittle">Tittle:</label>
+            <input type="text" id="article-tittle" name="article-tittle" placeholder="Tittle.">
+            <label for="article-image">Main image source:</label>
+            <input type="text" id="article-image" name="article-image" placeholder="Image source.">
+            <label for="article-tags">Tags:</label>
+            <textarea id="article-tags" name="article-tags" placeholder="Tags separated by coma."></textarea>
+            <label for="article-description">Description:</label>
+            <textarea id="article-description" name="article-description" placeholder="Article description."></textarea>
+            <label for="article-content">Content:</label>
+            <textarea id="article-content" name="article-content" placeholder="Article content."></textarea>
+            <input type="submit" id="article-publish" name="article-publish" value="Publish">
+        </form>
+    </div>
+</div>
+</body>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout (~{::content})}">
+
+<body>
+<div th:fragment="content">
+    <div class="error">
+        <h3>
+            <input type="button" value="Go back!" onclick="history.back()">
+            <span>ERROR 503: Service Temporarily Unavailable</span>
+            <input type="button" value="Go back!" onclick="history.back()">
+        </h3>
+        <p>This feature is yet to be implemented, I'm working on it!</p>
+        <img src="/img/503.jpg">
+        <a href='https://www.freepik.com/vectors/web'>Web vector created by stories - www.freepik.com</a>
+    </div>
+</div>
+</body>
