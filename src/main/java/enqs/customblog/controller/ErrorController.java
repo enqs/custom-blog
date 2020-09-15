@@ -8,11 +8,11 @@ public class ErrorController {
 
     @RequestMapping("/404")
     public String showError404() {
-        return "404";
+        return "errors/404";
     }
 
     @RequestMapping("/503")
     public String showError503() {
-        return "503";
+        return "errors/503";
     }
 }

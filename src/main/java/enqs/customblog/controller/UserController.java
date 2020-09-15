@@ -11,22 +11,22 @@ public class UserController {
 
     @GetMapping
     public String showUsers() {
-        return "users";
+        return "users/users";
     }
 
     @GetMapping("/{id}")
     public String showUser(@PathVariable int id) {
-        return "user";
+        return "users/user";
     }
 
     @GetMapping("/new")
     public String showUserEditor() {
-        return "user-editor";
+        return "users/user-editor";
     }
 
     @GetMapping("/{id}/editor")
     public String showUserEditor(@PathVariable int id) {
-        return "user-editor";
+        return "users/user-editor";
     }
 
 }

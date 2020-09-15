@@ -11,26 +11,26 @@ public class ArticleController {
 
     @GetMapping
     public String showArticles() {
-        return "articles";
+        return "articles/articles";
     }
 
     @GetMapping("/{id}")
     public String showArticle(@PathVariable int id) {
-        return "article";
+        return "articles/article";
     }
 
     @GetMapping("/random")
     public String showRandomArticle() {
-        return "article";
+        return "articles/article";
     }
 
     @GetMapping("/new")
     public String showArticleEditor() {
-        return "article-editor";
+        return "articles/article-editor";
     }
 
     @GetMapping("/{id}/editor")
     public String showArticleEditor(@PathVariable int id) {
-        return "article-editor";
+        return "articles/article-editor";
     }
 }
