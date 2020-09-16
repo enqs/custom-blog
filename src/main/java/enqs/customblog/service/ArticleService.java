@@ -6,4 +6,6 @@ public interface ArticleService {
 
      void save(Article article);
 
+     Article findById(int id);
+
 }
