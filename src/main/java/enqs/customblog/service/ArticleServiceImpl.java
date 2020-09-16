@@ -4,6 +4,7 @@ import enqs.customblog.dao.ArticleRepository;
 import enqs.customblog.entity.Article;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,5 +27,10 @@ public class ArticleServiceImpl implements ArticleService {
         Optional<Article> optionalArticle = articleRepository.findById(id);
         //TODO: Throw not found exception with valid response code
         return optionalArticle.orElse(new Article());
+    }
+
+    @Override
+    public List<Article> findAll() {
+        return articleRepository.findAll();
     }
 }
