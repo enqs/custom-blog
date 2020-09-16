@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+
 @Controller
 @RequestMapping("/articles")
 public class ArticleController {
@@ -33,7 +35,9 @@ public class ArticleController {
 
     @GetMapping("/new")
     public String showArticleEditor(Model model) {
-        model.addAttribute("article", new Article());
+        Article article = new Article();
+        article.setPublishDate(new Date(System.currentTimeMillis()));
+        model.addAttribute("article", article);
         return "articles/article-editor";
     }
 

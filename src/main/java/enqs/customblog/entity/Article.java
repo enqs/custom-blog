@@ -1,6 +1,7 @@
 package enqs.customblog.entity;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "article")
@@ -22,6 +23,9 @@ public class Article {
 
     @Column(name = "content")
     private String content;
+
+    @Column(name = "publish_date")
+    private Date publishDate;
 
     public Article() {
     }
@@ -64,5 +68,13 @@ public class Article {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
     }
 }
