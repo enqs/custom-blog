@@ -43,8 +43,10 @@ public class ArticleController {
         return "articles/article-editor";
     }
 
-    @GetMapping("/{id}/editor")
-    public String showArticleEditor(@PathVariable int id) {
+    @GetMapping("/edit")
+    public String showArticleEditor(@RequestParam int id, Model model) {
+        Article article = articleService.findById(id);
+        model.addAttribute("article", article);
         return "articles/article-editor";
     }
 

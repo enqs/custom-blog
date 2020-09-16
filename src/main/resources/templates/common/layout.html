@@ -84,7 +84,9 @@
                             <div class="administration-actions">
                                 <span>Article:</span>
                                 <a class="btn btn-ghost" href="#" th:href="@{/articles/new}">New</a>
-                                <a class="btn btn-ghost" href="#" th:href="@{/503}">Edit</a>
+                                <a class="btn btn-ghost" href="#" th:if="${article} != null" th:href="@{/articles/edit(id=${article.id})}">
+                                    Edit
+                                </a>
                                 <a class="btn btn-ghost" href="#" th:href="@{/503}">Del</a>
                             </div>
                             <div class="administration-actions">
