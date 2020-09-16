@@ -5,18 +5,28 @@
 <div th:fragment="content">
     <div class="article-editor">
         <h3>Article editor:</h3>
-        <form method="post" action="#" th:action="@{/503}" class="article-edit-form">
+        <form class="article-edit-form" method="post" action="#" th:action="@{/articles/save}" th:object="${article}">
+
+            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{publishDate}"/>
+
             <label for="article-tittle">Tittle:</label>
-            <input type="text" id="article-tittle" name="article-tittle" placeholder="Tittle.">
+            <input type="text" id="article-tittle" name="article-tittle" th:field="*{tittle}" placeholder="Tittle.">
+
             <label for="article-image">Main image source:</label>
-            <input type="text" id="article-image" name="article-image" placeholder="Image source.">
+            <input type="text" id="article-image" name="article-image" th:field="*{imageSource}" placeholder="Image source.">
+
             <label for="article-tags">Tags:</label>
-            <textarea id="article-tags" name="article-tags" placeholder="Tags separated by coma."></textarea>
+            <textarea id="article-tags" name="article-tags" placeholder="Tags separated by coma.(Work in progress)"></textarea>
+
             <label for="article-description">Description:</label>
-            <textarea id="article-description" name="article-description" placeholder="Article description."></textarea>
+            <textarea id="article-description" name="article-description" th:field="*{description}" placeholder="Article description."></textarea>
+
             <label for="article-content">Content:</label>
-            <textarea id="article-content" name="article-content" placeholder="Article content."></textarea>
+            <textarea id="article-content" name="article-content" th:field="*{content}" placeholder="Article content."></textarea>
+
             <input type="submit" id="article-publish" name="article-publish" value="Publish">
+
         </form>
     </div>
 </div>
