@@ -55,4 +55,10 @@ public class ArticleController {
         articleService.save(article);
         return "redirect:/";
     }
+
+    @GetMapping("/delete")
+    public String deleteArticle(@RequestParam int id) {
+        articleService.deleteById(id);
+        return "redirect:/";
+    }
 }
