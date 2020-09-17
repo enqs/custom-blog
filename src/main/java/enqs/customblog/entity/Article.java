@@ -4,27 +4,19 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "article")
 public class Article {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
-    @Column(name = "tittle")
     private String tittle;
 
-    @Column(name = "image_source")
     private String imageSource;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "content")
     private String content;
 
-    @Column(name = "publish_date")
     private Date publishDate;
 
     public Article() {
