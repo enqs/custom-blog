@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/articles")
@@ -19,8 +20,18 @@ public class ArticleController {
     }
 
     @GetMapping
-    public String showArticles() {
+    public String showArticles(Model model) {
+        //ToDo: implement pagination of results
+        List<Article> articles = articleService.findAll();
+        model.addAttribute("articles", articles);
         return "articles/articles";
+    }
+
+    @GetMapping("/browse")
+    public String browseArticles() {
+        //ToDo: Implement article search/browse feature
+        //ToDo: Pagination to results
+        return "articles/browse";
     }
 
     @GetMapping("/{id}")
@@ -32,6 +43,7 @@ public class ArticleController {
 
     @GetMapping("/random")
     public String showRandomArticle() {
+        //ToDo: Implement this feature
         return "articles/article";
     }
 
