@@ -79,7 +79,7 @@
                         </div>
                         <div class="actions" sec:authorize="isAuthenticated()">
                             <div class="user-actions">
-                                <a class="btn btn-full" href="#" th:href="@{/users/1/editor}">User-page</a>
+                                <a class="btn btn-full" href="#" th:href="@{/users/user_page}">User-page</a>
                                 <form method="post" action="/#" th:action="@{/logout}">
                                     <input type="submit" value="Log out">
                                 </form>

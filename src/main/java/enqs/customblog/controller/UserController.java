@@ -29,4 +29,9 @@ public class UserController {
         return "users/user-editor";
     }
 
+    @GetMapping("/user_page")
+    public String showUserPage() {
+        return "users/user-page";
+    }
+
 }
