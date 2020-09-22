@@ -1,4 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       th:fragment="layout (template)">
 <!DOCTYPE html>
 
@@ -66,37 +67,49 @@
                     <h3>User panel:</h3>
                     <div class="user-panel-container">
                         <img src="/img/user-placeholder-2.jpg">
-                        <div class="user">
+                        <div class="user" sec:authorize="isAuthenticated()">
                             <div>
                                 <p>Logged as:</p>
-                                <p>Nathaniel Mccoy</p>
+                                <p sec:authentication="name">Nathaniel Mccoy</p>
                             </div>
                             <div>
                                 <p>Access level:</p>
-                                <p>Administrator</p>
+                                <p sec:authentication="principal.authorities">Administrator</p>
                             </div>
                         </div>
-                        <div class="actions">
+                        <div class="actions" sec:authorize="isAuthenticated()">
                             <div class="user-actions">
-                                <a class="btn btn-full" href="#" th:href="@{/user/1/editor}">User-page</a>
-                                <a class="btn btn-full" href="#" th:href="@{/503}">Log out</a>
+                                <a class="btn btn-full" href="#" th:href="@{/users/1/editor}">User-page</a>
+                                <form method="post" action="/#" th:action="@{/logout}">
+                                    <input type="submit" value="Log out">
+                                </form>
                             </div>
-                            <div class="administration-actions">
+                            <div class="administration-actions" sec:authorize="hasAnyRole('ROLE_WRITER', 'ROLE_ADMIN')">
                                 <span>Article:</span>
                                 <a class="btn btn-ghost" href="#" th:href="@{/articles/new}">New</a>
-                                <a class="btn btn-ghost" href="#" th:if="${article} != null" th:href="@{/articles/edit(id=${article.id})}">
+                                <a class="btn btn-ghost" href="#" th:if="${article} != null"
+                                   th:href="@{/articles/edit(id=${article.id})}">
                                     Edit
                                 </a>
-                                <a class="btn btn-ghost" href="#" th:if="${article} != null" th:href="@{/articles/delete(id=${article.id})}">
+                                <a class="btn btn-ghost" href="#" th:if="${article} != null"
+                                   th:href="@{/articles/delete(id=${article.id})}">
                                     Del
                                 </a>
                             </div>
-                            <div class="administration-actions">
+                            <div class="administration-actions" sec:authorize="hasAnyRole('ROLE_ADMIN')">
                                 <span>User:</span>
                                 <a class="btn btn-ghost" href="#" th:href="@{/users/new}">New</a>
                                 <a class="btn btn-ghost" href="#" th:href="@{/503}">Edit</a>
                                 <a class="btn btn-ghost" href="#" th:href="@{/503}">Del</a>
                             </div>
+                        </div>
+                        <div class="actions" sec:authorize="isAuthenticated() == false">
+                            <form th:action="@{/authenticateUser}" method="post">
+                                <input type="text" name="username" placeholder="username">
+                                <input type="password" name="password" placeholder="password">
+                                <input type="submit" value="LogIn">
+                            </form>
+                            <a href="#" th:href="@{/503}">Register new account.</a>
                         </div>
                     </div>
                 </section>
@@ -106,7 +119,7 @@
                         <li>
                             <img class="small-image" src="/img/beanstalk.png" alt="Article's small image">
                             <div class="article-shortcut">
-                                <a href="#"  th:href="@{/articles/1}">
+                                <a href="#" th:href="@{/articles/1}">
                                     Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
                                 </a>
                                 <p class="metadata">
@@ -117,7 +130,7 @@
                         <li>
                             <img class="small-image" src="/img/beanstalk.png" alt="Article's small image">
                             <div class="article-shortcut">
-                                <a href="#"  th:href="@{/articles/1}">
+                                <a href="#" th:href="@{/articles/1}">
                                     Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
                                     inventore veritatis.
                                 </a>
@@ -129,7 +142,7 @@
                         <li>
                             <img class="small-image" src="/img/beanstalk.png" alt="Article's small image">
                             <div class="article-shortcut">
-                                <a href="#"  th:href="@{/articles/1}">
+                                <a href="#" th:href="@{/articles/1}">
                                     Nemo enim ipsam voluptatem quia voluptas.
                                 </a>
                                 <p class="metadata">
@@ -140,7 +153,7 @@
                         <li>
                             <img class="small-image" src="/img/beanstalk.png" alt="Article's small image">
                             <div class="article-shortcut">
-                                <a href="#"  th:href="@{/articles/1}">
+                                <a href="#" th:href="@{/articles/1}">
                                     Sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.
                                 </a>
                                 <p class="metadata">
@@ -151,7 +164,7 @@
                         <li>
                             <img class="small-image" src="/img/beanstalk.png" alt="Article's small image">
                             <div class="article-shortcut">
-                                <a href="#"  th:href="@{/articles/1}">
+                                <a href="#" th:href="@{/articles/1}">
                                     Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est.
                                 </a>
                                 <p class="metadata">
@@ -167,33 +180,38 @@
                         <li>
                             <div class="comment-shortcut">
                                 <a href="#" th:href="@{/users/1}">Vivan</a> in:
-                                <a href="#" th:href="@{/articles/1}"> "Qui dolorem ipsum quia dolor sit amet, consectetur, adipisci."</a>
+                                <a href="#" th:href="@{/articles/1}"> "Qui dolorem ipsum quia dolor sit amet,
+                                    consectetur, adipisci."</a>
                             </div>
                         </li>
                         <li>
                             <div class="comment-shortcut">
                                 <a href="#" th:href="@{/users/1}">Becky</a> in:
-                                <a href="#" th:href="@{/articles/1}"> "Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam
+                                <a href="#" th:href="@{/articles/1}"> "Sed quia non numquam eius modi tempora incidunt
+                                    ut labore et dolore magnam
                                     aliquam quaerat voluptatem."</a>
                             </div>
                         </li>
                         <li>
                             <div class="comment-shortcut">
                                 <a href="#" th:href="@{/users/1}">Maurice </a> in:
-                                <a href="#" th:href="@{/articles/1}"> "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
+                                <a href="#" th:href="@{/articles/1}"> "Ut enim ad minima veniam, quis nostrum
+                                    exercitationem ullam corporis
                                     suscipit."</a>
                             </div>
                         </li>
                         <li>
                             <div class="comment-shortcut">
                                 <a href="#" th:href="@{/users/1}">Susan </a> in:
-                                <a href="#" th:href="@{/articles/1}"> "Laboriosam, nisi ut aliquid ex ea commodi consequatur?"</a>
+                                <a href="#" th:href="@{/articles/1}"> "Laboriosam, nisi ut aliquid ex ea commodi
+                                    consequatur?"</a>
                             </div>
                         </li>
                         <li>
                             <div class="comment-shortcut">
                                 <a href="#" th:href="@{/users/1}">Sonia </a> in:
-                                <a href="#" th:href="@{/articles/1}"> "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
+                                <a href="#" th:href="@{/articles/1}"> "Quis autem vel eum iure reprehenderit qui in ea
+                                    voluptate velit esse quam
                                     nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
                                     pariatur?"</a>
                             </div>
@@ -201,33 +219,38 @@
                         <li>
                             <div class="comment-shortcut">
                                 <a href="#" th:href="@{/users/1}">Angel </a> in:
-                                <a href="#" th:href="@{/articles/1}"> "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+                                <a href="#" th:href="@{/articles/1}"> "At vero eos et accusamus et iusto odio
+                                    dignissimos ducimus qui blanditiis
                                     praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias."</a>
                             </div>
                         </li>
                         <li>
                             <div class="comment-shortcut">
                                 <a href="#" th:href="@{/users/1}">Peter </a> in:
-                                <a href="#" th:href="@{/articles/1}"> "Excepturi sint occaecati cupiditate non provident."</a>
+                                <a href="#" th:href="@{/articles/1}"> "Excepturi sint occaecati cupiditate non
+                                    provident."</a>
                             </div>
                         </li>
                         <li>
                             <div class="comment-shortcut">
                                 <a href="#" th:href="@{/users/1}">Cindy </a> in:
-                                <a href="#" th:href="@{/articles/1}"> "Similique sunt in culpa qui officia deserunt mollitia animi, id est
+                                <a href="#" th:href="@{/articles/1}"> "Similique sunt in culpa qui officia deserunt
+                                    mollitia animi, id est
                                     laborum et dolorum fuga."</a>
                             </div>
                         </li>
                         <li>
                             <div class="comment-shortcut">
                                 <a href="#" th:href="@{/users/1}">Darryl </a> in:
-                                <a href="#" th:href="@{/articles/1}"> " Et harum quidem rerum facilis est et expedita distinctio."</a>
+                                <a href="#" th:href="@{/articles/1}"> " Et harum quidem rerum facilis est et expedita
+                                    distinctio."</a>
                             </div>
                         </li>
                         <li>
                             <div class="comment-shortcut">
                                 <a href="#" th:href="@{/users/1}">Kim </a> in:
-                                <a href="#" th:href="@{/articles/1}"> "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+                                <a href="#" th:href="@{/articles/1}"> "Nam libero tempore, cum soluta nobis est eligendi
+                                    optio cumque nihil
                                     impedit quo minus id quod maxime placeat facere."</a>
                             </div>
                         </li>

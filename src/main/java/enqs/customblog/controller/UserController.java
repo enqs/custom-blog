@@ -24,7 +24,7 @@ public class UserController {
         return "users/user-editor";
     }
 
-    @GetMapping("/{id}/editor")
+    @GetMapping("/edit")
     public String showUserEditor(@PathVariable int id) {
         return "users/user-editor";
     }
