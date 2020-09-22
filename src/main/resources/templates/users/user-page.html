@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      th:replace="~{common/layout :: layout (~{::content})}">
+<body>
+<div th:fragment="content">
+    <div class="user-container">
+        <h3>
+            <span>User administration:</span>
+            <form method="post" action="/#" th:action="@{/logout}">
+                <input type="submit" value="Log out">
+            </form>
+        </h3>
+        <div class="user-details">
+            <img src="/img/user-placeholder-0.jpg">
+            <div class="user-data">
+                <div class="user-information">
+                    <div class="user-information-name">Nick:</div>
+                    <div class="user-information-value" sec:authentication="name">Anita93</div>
+                </div>
+                <div class="user-information">
+                    <div class="user-information-name">Name:</div>
+                    <div class="user-information-value">Tina</div>
+                </div>
+                <div class="user-information">
+                    <div class="user-information-name">Surname:</div>
+                    <div class="user-information-value">Rhodes</div>
+                </div>
+                <div class="user-information">
+                    <div class="user-information-name">Role:</div>
+                    <div class="user-information-value" sec:authentication="principal.authorities">Writer</div>
+                </div>
+                <div class="user-information">
+                    <div class="user-information-name">Registered:</div>
+                    <div class="user-information-value">28 October 2010</div>
+                </div>
+                <div class="user-information">
+                    <div class="user-information-name">Comments:</div>
+                    <div class="user-information-value">128</div>
+                </div>
+            </div>
+            <form class="edit-user-form" method="get" action="#" th:action="@{/503}">
+                <div class="edited-data">
+                    <label for="user-nick">Nick: </label>
+                    <input type="text" name="user-nick" id="user-nick" placeholder="Anita93">
+                </div>
+                <div class="edited-data">
+                    <label for="user-name">Name: </label>
+                    <input type="text" name="user-name" id="user-name" placeholder="Tina">
+                </div>
+                <div class="edited-data">
+                    <label for="user-surname">Surname: </label>
+                    <input type="text" name="user-surname" id="user-surname" placeholder="Rhodes">
+                </div>
+                <div class="edited-data">
+                    <label for="user-login">Login: </label>
+                    <input type="text" name="user-login" id="user-login" placeholder="TiRho">
+                </div>
+                <div class="edited-data">
+                    <label for="user-password">Password: </label>
+                    <input type="password" name="user-password" id="user-password" placeholder="******">
+                </div>
+                <input type="submit" value="Save changes">
+            </form>
+        </div>
+    </div>
+</div>
+</body>

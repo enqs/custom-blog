@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+/*
+ToDo: Before implementing any new html templates this css needs cleanup
+*/
+
 /* ----------------------------------------------- */
 /* BASIC SETUP */
 /* ----------------------------------------------- */
@@ -383,6 +387,7 @@ header {
 .user {
     height: 100%;
     font-size: 90%;
+    min-width: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -407,6 +412,17 @@ header {
 .actions .btn,
 .actions span {
     font-size: 90%;
+}
+
+.actions input[type=submit] {
+    width: 100%;
+}
+
+.actions input[type=text],
+.actions input[type=password] {
+    padding: 3px;
+    margin-bottom: 5px;
+    width: 100%;
 }
 
 .user-actions {
