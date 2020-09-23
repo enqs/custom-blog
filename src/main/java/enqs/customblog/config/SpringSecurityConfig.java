@@ -33,16 +33,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()
-                    .loginProcessingUrl("/authenticateUser")
+                .loginProcessingUrl("/authenticateUser")
                 //ToDo: Redirect to current page of user
-                    .defaultSuccessUrl("/articles")
-                    .permitAll()
+                .defaultSuccessUrl("/articles")
+                .permitAll()
                 .and()
                 .logout()
                 //ToDo: Redirect to current page of user
-                    .logoutSuccessUrl("/articles")
-                    .permitAll();
-                //ToDo: Access-denied page
+                .logoutSuccessUrl("/articles")
+                .permitAll();
+        //ToDo: Access-denied page
     }
 
     @Bean
