@@ -1,7 +1,7 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       th:fragment="layout (template)">
-<!DOCTYPE html>
 
 <head>
     <meta charset="utf-8">
@@ -109,7 +109,7 @@
                                 <input type="password" name="password" placeholder="password">
                                 <input type="submit" value="LogIn">
                             </form>
-                            <a href="#" th:href="@{/503}">Register new account.</a>
+                            <a href="#" th:href="@{/users/new}">Register new account.</a>
                         </div>
                     </div>
                 </section>

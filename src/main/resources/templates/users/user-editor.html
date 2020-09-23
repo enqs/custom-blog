@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout (~{::content})}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      th:replace="~{common/layout :: layout (~{::content})}">
+
 <body>
 <div th:fragment="content">
     <div class="user-container">
@@ -15,11 +18,11 @@
                     <div class="user-information-value">Anita93</div>
                 </div>
                 <div class="user-information">
-                    <div class="user-information-name">Name:</div>
+                    <div class="user-information-name">First name:</div>
                     <div class="user-information-value">Tina</div>
                 </div>
                 <div class="user-information">
-                    <div class="user-information-name">Surname:</div>
+                    <div class="user-information-name">Last name:</div>
                     <div class="user-information-value">Rhodes</div>
                 </div>
                 <div class="user-information">
@@ -35,38 +38,39 @@
                     <div class="user-information-value">128</div>
                 </div>
             </div>
-            <form class="edit-user-form" method="get" action="#" th:action="@{/503}">
+            <form class="edit-user-form" method="post" th:object="${editedUser}" action="#" th:action="@{/users/save}">
                 <div class="edited-data">
                     <label for="user-nick">Nick: </label>
-                    <input type="text" name="user-nick" id="user-nick" placeholder="Anita93">
+                    <input type="text" id="user-nick" th:field="*{nick}">
                 </div>
                 <div class="edited-data">
-                    <label for="user-name">Name: </label>
-                    <input type="text" name="user-name" id="user-name" placeholder="Tina">
+                    <label for="user-firstname">First name: </label>
+                    <input type="text" id="user-firstname" th:field="*{firstName}">
                 </div>
                 <div class="edited-data">
-                    <label for="user-surname">Surname: </label>
-                    <input type="text" name="user-surname" id="user-surname" placeholder="Rhodes">
+                    <label for="user-lastname">Last name: </label>
+                    <input type="text" id="user-lastname" th:field="*{lastName}">
                 </div>
                 <div class="edited-data">
-                    <label for="user-login">Login: </label>
-                    <input type="text" name="user-login" id="user-login" placeholder="TiRho">
+                    <label for="user-username">Username: </label>
+                    <input type="text" id="user-username" th:field="*{username}" th:required="required">
                 </div>
                 <div class="edited-data">
                     <label for="user-password">Password: </label>
-                    <input type="password" name="user-password" id="user-password" placeholder="******">
+                    <input type="password" id="user-password" th:field="*{password}" th:required="required">
                 </div>
                 <div class="edited-data">
                     <label for="user-role">Role: </label>
-                    <select name="user-role" id="user-role">
-                        <option value="suspended">Suspended</option>
-                        <option value="user" selected>User</option>
-                        <option value="writer">Writer</option>
-                        <option value="moderator">Moderator</option>
-                        <option value="admin">Admin</option>
+                    <select id="user-role" th:field="*{role}" sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                        <!--ToDo: Error proof this by listing possibilities downloaded from main program -->
+                        <option value="ROLE_SUSPENDED">Suspended</option>
+                        <option value="ROLE_USER" selected>User</option>
+                        <option value="ROLE_WRITER">Writer</option>
+                        <option value="ROLE_MODERATOR">Moderator</option>
+                        <option value="ROLE_ADMIN">Admin</option>
                     </select>
                 </div>
-                <input type="submit" value="Save changes">
+                <input type="submit" value="Register">
             </form>
         </div>
     </div>
