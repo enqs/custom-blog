@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ArticleService {
 
-     void save(Article article);
+    void save(Article article);
 
-     Article findById(int id);
+    Article findById(int id);
 
-     List<Article> findAll();
+    List<Article> findAll();
 
-     void deleteById(int id);
+    void deleteById(int id);
 }
