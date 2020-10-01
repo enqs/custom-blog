@@ -28,7 +28,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public String showUser(@PathVariable int id) {
-        return "users/user";
+        return "users/user-details";
     }
 
     @GetMapping("/new")

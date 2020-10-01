@@ -8,37 +8,11 @@
     <div class="user-container">
         <h3>
             <span>User administration:</span>
-            <a class="btn btn-full" href="#" th:href="@{/503}">Log out</a>
         </h3>
         <div class="user-details">
-            <img src="/img/user-placeholder-1.jpg">
-            <div class="user-data">
-                <div class="user-information">
-                    <div class="user-information-name">Nick:</div>
-                    <div class="user-information-value">Anita93</div>
-                </div>
-                <div class="user-information">
-                    <div class="user-information-name">First name:</div>
-                    <div class="user-information-value">Tina</div>
-                </div>
-                <div class="user-information">
-                    <div class="user-information-name">Last name:</div>
-                    <div class="user-information-value">Rhodes</div>
-                </div>
-                <div class="user-information">
-                    <div class="user-information-name">Role:</div>
-                    <div class="user-information-value">Writer</div>
-                </div>
-                <div class="user-information">
-                    <div class="user-information-name">Registered:</div>
-                    <div class="user-information-value">28 October 2010</div>
-                </div>
-                <div class="user-information">
-                    <div class="user-information-name">Comments:</div>
-                    <div class="user-information-value">128</div>
-                </div>
-            </div>
-            <form class="edit-user-form" method="post" th:object="${editedUser}" action="#" th:action="@{/users/save}">
+            <img src="/img/user-placeholder-0.jpg">
+            <form th:fragment="user-edit-form" class="edit-user-form" method="post" th:object="${editedUser}" action="#"
+                  th:action="@{/users/save}">
                 <div class="edited-data">
                     <label for="user-nick">Nick: </label>
                     <input type="text" id="user-nick" th:field="*{nick}">
