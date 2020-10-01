@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       th:replace="~{common/layout :: layout (~{::content})}">
 <body>
 <div th:fragment="content">
@@ -13,55 +12,8 @@
         </h3>
         <div class="user-details">
             <img src="/img/user-placeholder-0.jpg">
-            <div class="user-data">
-                <div class="user-information">
-                    <div class="user-information-name">Nick:</div>
-                    <div class="user-information-value" sec:authentication="name">Anita93</div>
-                </div>
-                <div class="user-information">
-                    <div class="user-information-name">First name:</div>
-                    <div class="user-information-value">Tina</div>
-                </div>
-                <div class="user-information">
-                    <div class="user-information-name">Last name:</div>
-                    <div class="user-information-value">Rhodes</div>
-                </div>
-                <div class="user-information">
-                    <div class="user-information-name">Role:</div>
-                    <div class="user-information-value" sec:authentication="principal.authorities">Writer</div>
-                </div>
-                <div class="user-information">
-                    <div class="user-information-name">Registered:</div>
-                    <div class="user-information-value">28 October 2010</div>
-                </div>
-                <div class="user-information">
-                    <div class="user-information-name">Comments:</div>
-                    <div class="user-information-value">128</div>
-                </div>
-            </div>
-            <form class="edit-user-form" method="get" action="#" th:action="@{/503}">
-                <div class="edited-data">
-                    <label for="user-nick">Nick: </label>
-                    <input type="text" name="user-nick" id="user-nick" placeholder="Anita93">
-                </div>
-                <div class="edited-data">
-                    <label for="user-firstname">First name: </label>
-                    <input type="text" name="user-firstname" id="user-firstname" placeholder="Tina">
-                </div>
-                <div class="edited-data">
-                    <label for="user-lastname">Last name: </label>
-                    <input type="text" name="user-lastname" id="user-lastname" placeholder="Rhodes">
-                </div>
-                <div class="edited-data">
-                    <label for="user-username">Username: </label>
-                    <input type="text" name="user-username" id="user-username" placeholder="TiRho">
-                </div>
-                <div class="edited-data">
-                    <label for="user-password">Password: </label>
-                    <input type="password" name="user-password" id="user-password" placeholder="******">
-                </div>
-                <input type="submit" value="Save changes">
-            </form>
+            <div th:replace="~{/users/user-details :: user-data}"></div>
+            <div th:replace="~{/users/user-editor :: user-edit-form}"></div>
         </div>
     </div>
 </div>

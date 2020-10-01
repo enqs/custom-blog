@@ -24,6 +24,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public User findById(int id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        //ToDo: Throw not found exception with valid response code
+        return optionalUser.orElse(new User());
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        return optionalUser.orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
+    }
+
+    @Override
     public void save(User user) {
         //ToDo: this should cooperate with db or enum
         user.setRole(Objects.isNull(user.getRole()) ? "ROLE_USER" : user.getRole());
@@ -35,6 +53,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void deleteById(int id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
     public boolean isUsernameAvailable(String username) {
         return userRepository.findAll().stream()
                 .map(User::getUsername)
@@ -43,8 +66,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> optionalUser = userRepository.findByUsername(username);
-        User user = optionalUser.orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
+        User user = findByUsername(username);
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
