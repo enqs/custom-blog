@@ -99,8 +99,8 @@
                             <div class="administration-actions" sec:authorize="hasAnyRole('ROLE_ADMIN')">
                                 <span>User:</span>
                                 <a class="btn btn-ghost" href="#" th:href="@{/users/new}">New</a>
-                                <a class="btn btn-ghost" href="#" th:href="@{/503}">Edit</a>
-                                <a class="btn btn-ghost" href="#" th:href="@{/503}">Del</a>
+                                <a class="btn btn-ghost" href="#" th:if="${user} != null" th:href="@{/users/edit(id=${user.id})}">Edit</a>
+                                <a class="btn btn-ghost" href="#" th:if="${user} != null" th:href="@{/users/delete(id=${user.id})}">Del</a>
                             </div>
                         </div>
                         <div class="actions" sec:authorize="isAuthenticated() == false">

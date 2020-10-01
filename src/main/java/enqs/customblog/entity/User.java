@@ -24,6 +24,8 @@ public class User {
 
     private String lastName;
 
+    //ToDo: Registration date
+
     public User() {
     }
 

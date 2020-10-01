@@ -11,8 +11,11 @@
         </h3>
         <div class="user-details">
             <img src="/img/user-placeholder-0.jpg">
-            <form th:fragment="user-edit-form" class="edit-user-form" method="post" th:object="${editedUser}" action="#"
+            <form th:fragment="user-edit-form" class="edit-user-form" method="post" th:object="${user}" action="#"
                   th:action="@{/users/save}">
+
+                <input type="hidden" th:field="*{id}"/>
+
                 <div class="edited-data">
                     <label for="user-nick">Nick: </label>
                     <input type="text" id="user-nick" th:field="*{nick}">
@@ -44,7 +47,7 @@
                         <option value="ROLE_ADMIN">Admin</option>
                     </select>
                 </div>
-                <input type="submit" value="Register">
+                <input type="submit" th:value="(*{id} != 0)? 'Save' : 'Register'">
             </form>
         </div>
     </div>

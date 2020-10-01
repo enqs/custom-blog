@@ -24,6 +24,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public User findById(int id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        //TODO: Throw not found exception with valid response code
+        return optionalUser.orElse(new User());
+    }
+
+    @Override
     public void save(User user) {
         //ToDo: this should cooperate with db or enum
         user.setRole(Objects.isNull(user.getRole()) ? "ROLE_USER" : user.getRole());
@@ -39,6 +51,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll().stream()
                 .map(User::getUsername)
                 .noneMatch(persisted -> Objects.equals(persisted, username));
+    }
+
+    @Override
+    public void deleteById(int id) {
+        userRepository.deleteById(id);
     }
 
     @Override
