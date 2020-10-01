@@ -2,6 +2,7 @@ package enqs.customblog.service;
 
 import enqs.customblog.dao.UserRepository;
 import enqs.customblog.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,13 +16,15 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private  UserRepository userRepository;
+    @Autowired
+    private  PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+//    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+//        this.userRepository = userRepository;
+//        this.passwordEncoder = passwordEncoder;
+//    }
 
     @Override
     public List<User> findAll() {
@@ -31,8 +34,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(int id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        //TODO: Throw not found exception with valid response code
+        //ToDo: Throw not found exception with valid response code
         return optionalUser.orElse(new User());
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        return optionalUser.orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
     }
 
     @Override

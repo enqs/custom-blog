@@ -66,20 +66,20 @@
                 <section class="user-panel">
                     <h3>User panel:</h3>
                     <div class="user-panel-container">
-                        <img src="/img/user-placeholder-2.jpg">
+                        <img src="/img/user-placeholder-0.jpg">
                         <div class="user" sec:authorize="isAuthenticated()">
                             <div>
                                 <p>Logged as:</p>
-                                <p sec:authentication="name">Nathaniel Mccoy</p>
+                                <p th:text="${session.user.username}">Gal Anonymous</p>
                             </div>
                             <div>
                                 <p>Access level:</p>
-                                <p sec:authentication="principal.authorities">Administrator</p>
+                                <p th:text="${session.user.role}">Administrator</p>
                             </div>
                         </div>
                         <div class="actions" sec:authorize="isAuthenticated()">
                             <div class="user-actions">
-                                <a class="btn btn-full" href="#" th:href="@{/users/user_page}">User-page</a>
+                                <a class="btn btn-full" href="#" th:href="@{/users/user_page(id=${session.user.id})}">User-page</a>
                                 <form method="post" action="/#" th:action="@{/logout}">
                                     <input type="submit" value="Log out">
                                 </form>

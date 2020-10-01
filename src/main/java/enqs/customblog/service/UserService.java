@@ -11,6 +11,8 @@ public interface UserService extends UserDetailsService {
 
     User findById(int id);
 
+    User findByUsername(String username);
+
     void save(User user);
 
     boolean isUsernameAvailable(String username);

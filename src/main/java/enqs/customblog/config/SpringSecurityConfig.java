@@ -17,6 +17,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
@@ -36,6 +38,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/authenticateUser")
                 //ToDo: Redirect to current page of user
                 .defaultSuccessUrl("/articles")
+                .successHandler(customAuthenticationSuccessHandler)
                 .permitAll()
                 .and()
                 .logout()

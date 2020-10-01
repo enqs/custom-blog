@@ -35,7 +35,10 @@ public class UserController {
     }
 
     @GetMapping("/user_page")
-    public String showUserPage() {
+    public String showUserPage(@RequestParam int id, Model model) {
+        //ToDo: block unauthorized access
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
         return "users/user-page";
     }
 

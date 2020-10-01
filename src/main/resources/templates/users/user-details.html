@@ -9,7 +9,7 @@
             <div th:fragment="user-data" class="user-data" th:object="${user}">
                 <div class="user-information">
                     <div class="user-information-name">Nick:</div>
-                    <div class="user-information-value" th:text="*{nick}?: *{username}"></div>
+                    <div class="user-information-value" th:text="*{nick}!=null and *{nick} != '' ? *{nick} : *{username}"></div>
                 </div>
                 <div class="user-information">
                     <div class="user-information-name">First name:</div>
