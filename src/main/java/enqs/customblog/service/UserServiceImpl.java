@@ -2,7 +2,6 @@ package enqs.customblog.service;
 
 import enqs.customblog.dao.UserRepository;
 import enqs.customblog.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,11 +14,6 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-//    @Autowired
-//    private UserRepository userRepository;
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -59,15 +53,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void deleteById(int id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
     public boolean isUsernameAvailable(String username) {
         return userRepository.findAll().stream()
                 .map(User::getUsername)
                 .noneMatch(persisted -> Objects.equals(persisted, username));
-    }
-
-    @Override
-    public void deleteById(int id) {
-        userRepository.deleteById(id);
     }
 
     @Override

@@ -15,7 +15,7 @@ public interface UserService extends UserDetailsService {
 
     void save(User user);
 
-    boolean isUsernameAvailable(String username);
-
     void deleteById(int id);
+
+    boolean isUsernameAvailable(String username);
 }

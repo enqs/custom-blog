@@ -27,19 +27,20 @@ public class UserController {
         return "users/users";
     }
 
-    @GetMapping("/{id}")
-    public String showUser(@PathVariable int id, Model model) {
-        User user = userService.findById(id);
-        model.addAttribute("user", user);
-        return "users/user-details";
-    }
-
     @GetMapping("/user_page")
+    //ToDo: extract user id from session instead from parameter
     public String showUserPage(@RequestParam int id, Model model) {
         //ToDo: block unauthorized access
         User user = userService.findById(id);
         model.addAttribute("user", user);
         return "users/user-page";
+    }
+
+    @GetMapping("/{id}")
+    public String showUser(@PathVariable int id, Model model) {
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+        return "users/user-details";
     }
 
     @GetMapping("/new")
