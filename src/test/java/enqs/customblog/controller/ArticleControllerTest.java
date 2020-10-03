@@ -118,17 +118,71 @@ class ArticleControllerTest {
     }
 
     @Test
-    void shouldNotDeleteNorSaveAnyArticle() {
+    void shouldNotSaveAnyArticleWhenShowingArticle() {
         //GIVEN
         int targetId = 1;
 
         //WHEN
         articleController.showArticle(targetId, modelMock);
+
+        //THEN
+        Mockito.verify(articleServiceMock, Mockito.never()).save(Mockito.any());
+    }
+
+    @Test
+    void shouldNotSaveAnyArticleWhenShowingNewArticleEditor() {
+
+        //WHEN
         articleController.showArticleEditor(modelMock);
+
+        //THEN
+        Mockito.verify(articleServiceMock, Mockito.never()).save(Mockito.any());
+    }
+
+    @Test
+    void shouldNotSaveAnyArticleWhenShowingExistingArticleEditor() {
+        //GIVEN
+        int targetId = 1;
+
+        //WHEN
         articleController.showArticleEditor(targetId, modelMock);
 
         //THEN
         Mockito.verify(articleServiceMock, Mockito.never()).save(Mockito.any());
+    }
+
+    @Test
+    void shouldNotDeleteAnyArticleWhenShowingArticle() {
+        //GIVEN
+        int targetId = 1;
+
+        //WHEN
+        articleController.showArticle(targetId, modelMock);
+
+        //THEN
+        Mockito.verify(articleServiceMock, Mockito.never()).deleteById(ArgumentMatchers.anyInt());
+    }
+
+    @Test
+    void shouldNotDeleteAnyArticleWhenShowingNewArticleEditor() {
+        //GIVEN
+
+        //WHEN
+        articleController.showArticleEditor(modelMock);
+
+        //THEN
+        Mockito.verify(articleServiceMock, Mockito.never()).deleteById(ArgumentMatchers.anyInt());
+    }
+
+    @Test
+    void shouldNotDeleteAnyArticleShowingExistingArticleEditor() {
+        //GIVEN
+        int targetId = 1;
+
+        //WHEN
+        articleController.showArticleEditor(targetId, modelMock);
+
+        //THEN
         Mockito.verify(articleServiceMock, Mockito.never()).deleteById(ArgumentMatchers.anyInt());
     }
 
@@ -161,7 +215,18 @@ class ArticleControllerTest {
 
         //THEN
         Mockito.verify(articleServiceMock).deleteById(targetId);
-        Mockito.verify(articleServiceMock, Mockito.times(1)).deleteById(ArgumentMatchers.anyInt());
+    }
+
+    @Test
+    void shouldDeleteNotTargetedArticles() {
+        //GIVEN
+        int targetId = 1;
+
+        //WHEN
+        articleController.deleteArticle(targetId);
+
+        //THEN
+        Mockito.verify(articleServiceMock, Mockito.never()).deleteById(ArgumentMatchers.intThat(integer -> integer != targetId));
     }
 
     @Test
