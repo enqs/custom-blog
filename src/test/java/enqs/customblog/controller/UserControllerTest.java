@@ -68,38 +68,13 @@ class UserControllerTest {
     }
 
     @Test
-    void shouldAddTargetUserToModel() {
+    void shouldAddTargetUserToModelWhenShowingUser() {
         //GIVEN
         int targetId = 1;
         Mockito.when(userServiceMock.findById(1)).thenReturn(sampleUser);
 
         //WHEN
         userController.showUser(targetId, modelMock);
-
-        //THEN
-        Mockito.verify(modelMock).addAttribute("user", sampleUser);
-    }
-
-    @Test
-    void shouldPassNewUserModel() {
-        //GIVEN
-        User newUser = new User();
-
-        //WHEN
-        userController.showUserEditor(modelMock);
-
-        //THEN
-        Mockito.verify(modelMock).addAttribute("user", newUser);
-    }
-
-    @Test
-    void shouldPassEditedUserToModel() {
-        //GIVEN
-        int targetId = 1;
-        Mockito.when(userServiceMock.findById(1)).thenReturn(sampleUser);
-
-        //WHEN
-        userController.showUserEditor(targetId, modelMock);
 
         //THEN
         Mockito.verify(modelMock).addAttribute("user", sampleUser);
@@ -118,28 +93,6 @@ class UserControllerTest {
     }
 
     @Test
-    void shouldNotSaveAnyUserWhenShowingNewUserEditor() {
-
-        //WHEN
-        userController.showUserEditor(modelMock);
-
-        //THEN
-        Mockito.verify(userServiceMock, Mockito.never()).save(Mockito.any());
-    }
-
-    @Test
-    void shouldNotSaveAnyUserWhenShowingExistingUserEditor() {
-        //GIVEN
-        int targetId = 1;
-
-        //WHEN
-        userController.showUserEditor(targetId, modelMock);
-
-        //THEN
-        Mockito.verify(userServiceMock, Mockito.never()).save(Mockito.any());
-    }
-
-    @Test
     void shouldNotDeleteAnyUserWhenShowingUser() {
         //GIVEN
         int targetId = 1;
@@ -152,6 +105,28 @@ class UserControllerTest {
     }
 
     @Test
+    void shouldPassNewUserModelWhenShowingNewUserEditor() {
+        //GIVEN
+        User newUser = new User();
+
+        //WHEN
+        userController.showUserEditor(modelMock);
+
+        //THEN
+        Mockito.verify(modelMock).addAttribute("user", newUser);
+    }
+
+    @Test
+    void shouldNotSaveAnyUserWhenShowingNewUserEditor() {
+
+        //WHEN
+        userController.showUserEditor(modelMock);
+
+        //THEN
+        Mockito.verify(userServiceMock, Mockito.never()).save(Mockito.any());
+    }
+
+    @Test
     void shouldNotDeleteAnyUserWhenShowingNewUserEditor() {
         //GIVEN
 
@@ -160,6 +135,31 @@ class UserControllerTest {
 
         //THEN
         Mockito.verify(userServiceMock, Mockito.never()).deleteById(ArgumentMatchers.anyInt());
+    }
+
+    @Test
+    void shouldPassEditedUserToModelWhenShowingExistingUserEditor() {
+        //GIVEN
+        int targetId = 1;
+        Mockito.when(userServiceMock.findById(1)).thenReturn(sampleUser);
+
+        //WHEN
+        userController.showUserEditor(targetId, modelMock);
+
+        //THEN
+        Mockito.verify(modelMock).addAttribute("user", sampleUser);
+    }
+
+    @Test
+    void shouldNotSaveAnyUserWhenShowingExistingUserEditor() {
+        //GIVEN
+        int targetId = 1;
+
+        //WHEN
+        userController.showUserEditor(targetId, modelMock);
+
+        //THEN
+        Mockito.verify(userServiceMock, Mockito.never()).save(Mockito.any());
     }
 
     @Test
