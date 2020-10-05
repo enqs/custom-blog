@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -315,4 +317,60 @@ class UserServiceImplTest {
         List<User> users = userRepository.findAll();
         Assertions.assertThat(users).containsExactlyInAnyOrderElementsOf(List.of(sampleUserFoo, sampleUserBar));
     }
+
+    @Test
+    void shouldReturnValidUserDetails() {
+        //GIVEN
+        userRepository.save(sampleUserFoo);
+        UserDetails expectedUserDetails = new org.springframework.security.core.userdetails.User(
+                sampleUserFoo.getUsername(),
+                sampleUserFoo.getPassword(),
+                List.of(new SimpleGrantedAuthority(sampleUserFoo.getRole())));
+
+        //WHEN
+        UserDetails returnedUserDetails = userService.loadUserByUsername(sampleUserFoo.getUsername());
+
+        //THEN
+        Assertions.assertThat(returnedUserDetails).isEqualToComparingFieldByField(expectedUserDetails);
+    }
+
+    @Test
+    void shouldNotDeleteNorModifyWhenLoadsUserDetails() {
+        //GIVEN
+        userRepository.saveAll(List.of(sampleUserFoo, sampleUserBar, sampleUserBaz));
+
+        //WHEN
+        userService.loadUserByUsername(sampleUserFoo.getUsername());
+
+        //THEN
+        Assertions.assertThat(userRepository.findAll()).containsExactlyInAnyOrderElementsOf(List.of(sampleUserFoo, sampleUserBar, sampleUserBaz));
+    }
+
+    @Test
+    void shouldThrowUsernameNotFoundWhenFailedToLoadUserDetails() {
+        //GIVEN
+        userRepository.save(sampleUserFoo);
+
+        Assertions.
+                //WHEN
+                        assertThatThrownBy(() -> userService.loadUserByUsername(sampleUserBar.getUsername())).
+                //THEN
+                        isInstanceOf(UsernameNotFoundException.class);
+    }
+
+    @Test
+    void shouldNotDeleteNorModifyWhenFailsToLoadUserDetails() {
+        //GIVEN
+        userRepository.saveAll(List.of( sampleUserBar, sampleUserBaz));
+
+        //WHEN
+        try {
+            userService.loadUserByUsername(sampleUserFoo.getUsername());
+        } catch (UsernameNotFoundException ignored) {
+        }
+
+        //THEN
+        Assertions.assertThat(userRepository.findAll()).containsExactlyInAnyOrderElementsOf(List.of(sampleUserBar, sampleUserBaz));
+    }
+
 }

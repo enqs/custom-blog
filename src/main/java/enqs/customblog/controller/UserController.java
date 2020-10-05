@@ -31,6 +31,7 @@ public class UserController {
     //ToDo: extract user id from session instead from parameter
     public String showUserPage(@RequestParam int id, Model model) {
         //ToDo: block unauthorized access
+        //ToDo: write tests after ↑↑↑
         User user = userService.findById(id);
         model.addAttribute("user", user);
         return "users/user-page";
