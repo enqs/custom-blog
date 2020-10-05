@@ -13,12 +13,15 @@ import org.springframework.ui.Model;
 import java.sql.Date;
 import java.util.List;
 
+//ToDo: If possible extract abstract generic test class for similar controllers
 class ArticleControllerTest {
 
     private Model modelMock;
     private Article sampleArticle;
     private ArticleService articleServiceMock;
     private ArticleController articleController;
+    private ArgumentCaptor<String> acString;
+    private ArgumentCaptor<Article> acArticle;
 
     @BeforeEach
     void setUp() {
@@ -26,6 +29,10 @@ class ArticleControllerTest {
         modelMock = Mockito.mock(Model.class);
         articleServiceMock = Mockito.mock(ArticleService.class);
         articleController = new ArticleController(articleServiceMock);
+
+        acString = ArgumentCaptor.forClass(String.class);
+        acArticle = ArgumentCaptor.forClass(Article.class);
+
         sampleArticle = new Article(
                 0,
                 "TittleFoo",
@@ -55,7 +62,6 @@ class ArticleControllerTest {
         Mockito.when(articleServiceMock.findAll()).thenReturn(articles);
         articles.forEach( article -> Mockito.when(articleServiceMock.findById(article.getId())).thenReturn(article));
         ArgumentCaptor<List> acList = ArgumentCaptor.forClass(List.class);
-        ArgumentCaptor<String> acString = ArgumentCaptor.forClass(String.class);
 
         //WHEN
         articleController.showArticles(modelMock);
@@ -77,7 +83,9 @@ class ArticleControllerTest {
         articleController.showArticle(targetId, modelMock);
 
         //THEN
-        Mockito.verify(modelMock).addAttribute("article", sampleArticle);
+        Mockito.verify(modelMock).addAttribute(acString.capture(), acArticle.capture());
+        Assertions.assertThat(acString.getValue()).isEqualTo("article");
+        Assertions.assertThat(acArticle.getValue()).isEqualToComparingFieldByField(sampleArticle);
     }
 
     @Test
@@ -89,8 +97,6 @@ class ArticleControllerTest {
     @Test
     void shouldPassNewArticleWithCurrentDateToModel() {
         //GIVEN
-        ArgumentCaptor<String> acString = ArgumentCaptor.forClass(String.class);
-        ArgumentCaptor<Article> acArticle = ArgumentCaptor.forClass(Article.class);
         Article newArticle = new Article();
         //ToDo: This fix date's comparison also here...
         newArticle.setPublishDate(new Date(System.currentTimeMillis()));
@@ -114,7 +120,9 @@ class ArticleControllerTest {
         articleController.showArticleEditor(targetId, modelMock);
 
         //THEN
-        Mockito.verify(modelMock).addAttribute("article", sampleArticle);
+        Mockito.verify(modelMock).addAttribute(acString.capture(), acArticle.capture());
+        Assertions.assertThat(acString.getValue()).isEqualTo("article");
+        Assertions.assertThat(acArticle.getValue()).isEqualToComparingFieldByField(sampleArticle);
     }
 
     @Test
@@ -192,12 +200,13 @@ class ArticleControllerTest {
         articleController.saveArticle(sampleArticle);
 
         //THEN
-        Mockito.verify(articleServiceMock).save(sampleArticle);
         Mockito.verify(articleServiceMock, Mockito.times(1)).save(Mockito.any());
+        Mockito.verify(articleServiceMock).save(acArticle.capture());
+        Assertions.assertThat(acArticle.getValue()).isEqualToComparingFieldByField(sampleArticle);
     }
 
     @Test
-    void ShouldNotDeleteWhenSaving() {
+    void shouldNotDeleteWhenSaving() {
         //WHEN
         articleController.saveArticle(sampleArticle);
 
@@ -218,7 +227,7 @@ class ArticleControllerTest {
     }
 
     @Test
-    void shouldDeleteNotTargetedArticles() {
+    void shouldNotDeleteArticlesOtherThanTargeted() {
         //GIVEN
         int targetId = 1;
 

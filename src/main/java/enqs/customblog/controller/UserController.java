@@ -27,7 +27,7 @@ public class UserController {
         return "users/users";
     }
 
-    @GetMapping("/user_page")
+    @GetMapping("/userpage")
     //ToDo: extract user id from session instead from parameter
     public String showUserPage(@RequestParam int id, Model model) {
         //ToDo: block unauthorized access
@@ -73,7 +73,7 @@ public class UserController {
     }
 
     @GetMapping("/delete")
-    public String deleteUSer(@RequestParam int id) {
+    public String deleteUser(@RequestParam int id) {
         //ToDo: Prevent unauthorized deletes: only admin and self delete
         userService.deleteById(id);
         return "redirect:/users";
