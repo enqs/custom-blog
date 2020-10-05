@@ -19,8 +19,6 @@ class UserControllerTest {
     private User sampleUser;
     private UserService userServiceMock;
     private UserController userController;
-    private ArgumentCaptor<String> acString;
-    private ArgumentCaptor<User> acUser;
 
     @BeforeEach
     void setUp() {
@@ -28,10 +26,6 @@ class UserControllerTest {
         modelMock = Mockito.mock(Model.class);
         userServiceMock = Mockito.mock(UserService.class);
         userController = new UserController(userServiceMock);
-
-        acString = ArgumentCaptor.forClass(String.class);
-        acUser = ArgumentCaptor.forClass(User.class);
-
         sampleUser = new User(
                 0,
                 "Username",
@@ -59,7 +53,8 @@ class UserControllerTest {
                 new User(4, "Username4", "Password4", null, "Nick4", "FirstName4", "LastName4"),
                 new User(5, "Username5", "Password5", null, "Nick5", "FirstName5", "LastName5"));
         Mockito.when(userServiceMock.findAll()).thenReturn(users);
-        users.forEach( user -> Mockito.when(userServiceMock.findById(user.getId())).thenReturn(user));
+        users.forEach(user -> Mockito.when(userServiceMock.findById(user.getId())).thenReturn(user));
+        ArgumentCaptor<String> acString = ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<List> acList = ArgumentCaptor.forClass(List.class);
 
         //WHEN
@@ -82,9 +77,7 @@ class UserControllerTest {
         userController.showUser(targetId, modelMock);
 
         //THEN
-        Mockito.verify(modelMock).addAttribute(acString.capture(), acUser.capture());
-        Assertions.assertThat(acString.getValue()).isEqualTo("user");
-        Assertions.assertThat(acUser.getValue()).isEqualToComparingFieldByField(sampleUser);
+        Mockito.verify(modelMock).addAttribute("user", sampleUser);
     }
 
     @Test
@@ -96,9 +89,7 @@ class UserControllerTest {
         userController.showUserEditor(modelMock);
 
         //THEN
-        Mockito.verify(modelMock).addAttribute(acString.capture(), acUser.capture());
-        Assertions.assertThat(acString.getValue()).isEqualTo("user");
-        Assertions.assertThat(acUser.getValue()).isEqualToComparingFieldByField(newUser);
+        Mockito.verify(modelMock).addAttribute("user", newUser);
     }
 
     @Test
@@ -111,9 +102,7 @@ class UserControllerTest {
         userController.showUserEditor(targetId, modelMock);
 
         //THEN
-        Mockito.verify(modelMock).addAttribute(acString.capture(), acUser.capture());
-        Assertions.assertThat(acString.getValue()).isEqualTo("user");
-        Assertions.assertThat(acUser.getValue()).isEqualToComparingFieldByField(sampleUser);
+        Mockito.verify(modelMock).addAttribute("user", sampleUser);
     }
 
     @Test
@@ -195,8 +184,7 @@ class UserControllerTest {
 
         //THEN
         Mockito.verify(userServiceMock, Mockito.times(1)).save(Mockito.any());
-        Mockito.verify(userServiceMock).save(acUser.capture());
-        Assertions.assertThat(acUser.getValue()).isEqualToComparingFieldByField(sampleUser);
+        Mockito.verify(userServiceMock).save(sampleUser);
     }
 
     @Test

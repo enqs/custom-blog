@@ -101,7 +101,6 @@ class UserServiceImplTest {
         Assertions.assertThat(sampleUserFoo.getRole()).isEqualTo(originalRole);
     }
 
-
     @Test
     void shouldNotModifyNorDeleteOtherEntriesWhenSaveNew() {
         //GIVEN

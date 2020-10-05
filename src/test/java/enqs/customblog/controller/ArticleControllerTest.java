@@ -20,8 +20,6 @@ class ArticleControllerTest {
     private Article sampleArticle;
     private ArticleService articleServiceMock;
     private ArticleController articleController;
-    private ArgumentCaptor<String> acString;
-    private ArgumentCaptor<Article> acArticle;
 
     @BeforeEach
     void setUp() {
@@ -29,10 +27,6 @@ class ArticleControllerTest {
         modelMock = Mockito.mock(Model.class);
         articleServiceMock = Mockito.mock(ArticleService.class);
         articleController = new ArticleController(articleServiceMock);
-
-        acString = ArgumentCaptor.forClass(String.class);
-        acArticle = ArgumentCaptor.forClass(Article.class);
-
         sampleArticle = new Article(
                 0,
                 "TittleFoo",
@@ -60,7 +54,8 @@ class ArticleControllerTest {
                 new Article(3, "Tittle3", "/img3", "Desc3", "Content3", null),
                 new Article(4, "Tittle4", "/img4", "Desc4", "Content4", null));
         Mockito.when(articleServiceMock.findAll()).thenReturn(articles);
-        articles.forEach( article -> Mockito.when(articleServiceMock.findById(article.getId())).thenReturn(article));
+        articles.forEach(article -> Mockito.when(articleServiceMock.findById(article.getId())).thenReturn(article));
+        ArgumentCaptor<String> acString = ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<List> acList = ArgumentCaptor.forClass(List.class);
 
         //WHEN
@@ -83,9 +78,7 @@ class ArticleControllerTest {
         articleController.showArticle(targetId, modelMock);
 
         //THEN
-        Mockito.verify(modelMock).addAttribute(acString.capture(), acArticle.capture());
-        Assertions.assertThat(acString.getValue()).isEqualTo("article");
-        Assertions.assertThat(acArticle.getValue()).isEqualToComparingFieldByField(sampleArticle);
+        Mockito.verify(modelMock).addAttribute("article", sampleArticle);
     }
 
     @Test
@@ -105,9 +98,7 @@ class ArticleControllerTest {
         articleController.showArticleEditor(modelMock);
 
         //THEN
-        Mockito.verify(modelMock).addAttribute(acString.capture(), acArticle.capture());
-        Assertions.assertThat(acString.getValue()).isEqualTo("article");
-        Assertions.assertThat(acArticle.getValue()).isEqualToComparingFieldByField(newArticle);
+        Mockito.verify(modelMock).addAttribute("article", newArticle);
     }
 
     @Test
@@ -120,9 +111,7 @@ class ArticleControllerTest {
         articleController.showArticleEditor(targetId, modelMock);
 
         //THEN
-        Mockito.verify(modelMock).addAttribute(acString.capture(), acArticle.capture());
-        Assertions.assertThat(acString.getValue()).isEqualTo("article");
-        Assertions.assertThat(acArticle.getValue()).isEqualToComparingFieldByField(sampleArticle);
+        Mockito.verify(modelMock).addAttribute("article", sampleArticle);
     }
 
     @Test
@@ -201,8 +190,7 @@ class ArticleControllerTest {
 
         //THEN
         Mockito.verify(articleServiceMock, Mockito.times(1)).save(Mockito.any());
-        Mockito.verify(articleServiceMock).save(acArticle.capture());
-        Assertions.assertThat(acArticle.getValue()).isEqualToComparingFieldByField(sampleArticle);
+        Mockito.verify(articleServiceMock).save(sampleArticle);
     }
 
     @Test
