@@ -69,7 +69,7 @@ class ArticleControllerTest {
     }
 
     @Test
-    void shouldAddTargetArticleToModel() {
+    void shouldAddTargetArticleToModelWhenShowingArticle() {
         //GIVEN
         int targetId = 1;
         Mockito.when(articleServiceMock.findById(1)).thenReturn(sampleArticle);
@@ -79,6 +79,30 @@ class ArticleControllerTest {
 
         //THEN
         Mockito.verify(modelMock).addAttribute("article", sampleArticle);
+    }
+
+    @Test
+    void shouldNotSaveAnyArticleWhenShowingArticle() {
+        //GIVEN
+        int targetId = 1;
+
+        //WHEN
+        articleController.showArticle(targetId, modelMock);
+
+        //THEN
+        Mockito.verify(articleServiceMock, Mockito.never()).save(Mockito.any());
+    }
+
+    @Test
+    void shouldNotDeleteAnyArticleWhenShowingArticle() {
+        //GIVEN
+        int targetId = 1;
+
+        //WHEN
+        articleController.showArticle(targetId, modelMock);
+
+        //THEN
+        Mockito.verify(articleServiceMock, Mockito.never()).deleteById(ArgumentMatchers.anyInt());
     }
 
     @Test
@@ -102,6 +126,27 @@ class ArticleControllerTest {
     }
 
     @Test
+    void shouldNotSaveAnyArticleWhenShowingNewArticleEditor() {
+
+        //WHEN
+        articleController.showArticleEditor(modelMock);
+
+        //THEN
+        Mockito.verify(articleServiceMock, Mockito.never()).save(Mockito.any());
+    }
+
+    @Test
+    void shouldNotDeleteAnyArticleWhenShowingNewArticleEditor() {
+        //GIVEN
+
+        //WHEN
+        articleController.showArticleEditor(modelMock);
+
+        //THEN
+        Mockito.verify(articleServiceMock, Mockito.never()).deleteById(ArgumentMatchers.anyInt());
+    }
+
+    @Test
     void shouldPassEditedArticleToModel() {
         //GIVEN
         int targetId = 1;
@@ -115,28 +160,6 @@ class ArticleControllerTest {
     }
 
     @Test
-    void shouldNotSaveAnyArticleWhenShowingArticle() {
-        //GIVEN
-        int targetId = 1;
-
-        //WHEN
-        articleController.showArticle(targetId, modelMock);
-
-        //THEN
-        Mockito.verify(articleServiceMock, Mockito.never()).save(Mockito.any());
-    }
-
-    @Test
-    void shouldNotSaveAnyArticleWhenShowingNewArticleEditor() {
-
-        //WHEN
-        articleController.showArticleEditor(modelMock);
-
-        //THEN
-        Mockito.verify(articleServiceMock, Mockito.never()).save(Mockito.any());
-    }
-
-    @Test
     void shouldNotSaveAnyArticleWhenShowingExistingArticleEditor() {
         //GIVEN
         int targetId = 1;
@@ -146,29 +169,6 @@ class ArticleControllerTest {
 
         //THEN
         Mockito.verify(articleServiceMock, Mockito.never()).save(Mockito.any());
-    }
-
-    @Test
-    void shouldNotDeleteAnyArticleWhenShowingArticle() {
-        //GIVEN
-        int targetId = 1;
-
-        //WHEN
-        articleController.showArticle(targetId, modelMock);
-
-        //THEN
-        Mockito.verify(articleServiceMock, Mockito.never()).deleteById(ArgumentMatchers.anyInt());
-    }
-
-    @Test
-    void shouldNotDeleteAnyArticleWhenShowingNewArticleEditor() {
-        //GIVEN
-
-        //WHEN
-        articleController.showArticleEditor(modelMock);
-
-        //THEN
-        Mockito.verify(articleServiceMock, Mockito.never()).deleteById(ArgumentMatchers.anyInt());
     }
 
     @Test
