@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+//ToDo: If possible extract abstract generic test class for similar services
 @SpringBootTest
 class ArticleServiceImplTest {
 

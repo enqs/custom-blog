@@ -187,7 +187,7 @@ class UserControllerTest {
 
     @Test
     void shouldSaveOnceWhenUserWithAvailableUsername() {
-        //WHEN
+        //GIVEN
         Mockito.when(userServiceMock.isUsernameAvailable(Mockito.anyString())).thenReturn(true);
 
         //WHEN
@@ -201,7 +201,7 @@ class UserControllerTest {
 
     @Test
     void shouldNotSaveWhenUserWithUnavailableUsername() {
-        //WHEN
+        //GIVEN
         Mockito.when(userServiceMock.isUsernameAvailable(Mockito.anyString())).thenReturn(false);
 
         //WHEN
