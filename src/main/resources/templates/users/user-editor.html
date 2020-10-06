@@ -34,11 +34,12 @@
                 </div>
                 <div class="edited-data">
                     <label for="user-password">Password: </label>
-                    <input type="password" id="user-password" th:field="*{password}" th:required="required">
+                    <input type="password" id="user-password" th:field="*{password}"
+                           th:required="*{username} ? null : 'required' ">
                 </div>
                 <div class="edited-data" sec:authorize="hasAnyRole('ROLE_ADMIN')">
                     <label for="user-role">Role: </label>
-                    <select id="user-role" th:field="*{role}" >
+                    <select id="user-role" th:field="*{role}">
                         <!--ToDo: Error proof this by listing possibilities downloaded from main program -->
                         <option value="ROLE_SUSPENDED">Suspended</option>
                         <option value="ROLE_USER" selected>User</option>

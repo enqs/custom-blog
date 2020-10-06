@@ -2,12 +2,16 @@ package enqs.customblog.controller;
 
 import enqs.customblog.entity.User;
 import enqs.customblog.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
+
+//ToDo: Refactor tests for controllers
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -27,14 +31,10 @@ public class UserController {
         return "users/users";
     }
 
+    //ToDo: write tests for this ↓↓↓
     @GetMapping("/userpage")
-    //ToDo: extract user id from session instead from parameter
-    public String showUserPage(@RequestParam int id, Model model) {
-        //ToDo: block unauthorized access
-        //ToDo: write tests after ↑↑↑
-        User user = userService.findById(id);
-        model.addAttribute("user", user);
-        return "users/user-page";
+    public String showUserPage(Authentication authentication, Model model) {
+        return Objects.nonNull(authentication) ? processUserpageRequest(model, authentication.getName()) : accessDenied();
     }
 
     @GetMapping("/{id}")
@@ -51,18 +51,50 @@ public class UserController {
     }
 
     @GetMapping("/edit")
-    public String showUserEditor(@RequestParam int id, Model model) {
-        //ToDo: block unauthorized user edition: only self-edition or by admin
+    public String showUserEditor(@RequestParam int id, Model model, Authentication authentication) {
+        return isAuthorized(id, authentication) ? processEditPageRequest(id, model) : accessDenied();
+    }
+
+    @PostMapping("/save")
+    public String saveUser(@ModelAttribute User user, Model model, Authentication authentication) {
+        //ToDo: Implement validation of user's fields
+        //ToDo: Matching passwords
+        return user.getId() == 0 || isAuthorized(user.getId(), authentication) ? processSaveRequest(user, model) : accessDenied();
+    }
+
+    @GetMapping("/delete")
+    public String deleteUser(@RequestParam int id, Authentication authentication) {
+        return isAuthorized(id, authentication) ? processDeleteRequest(id) : accessDenied();
+    }
+
+    private boolean isAuthorized(int id, Authentication authentication) {
+        boolean isAuthenticated = Objects.nonNull(authentication);
+        return isAuthenticated && hasEditRights(id, authentication);
+    }
+
+    private boolean hasEditRights(int id, Authentication authentication) {
+        boolean isSameUser = userService.findByUsername(authentication.getName()).getId() == id;
+        boolean isAdmin = userService.findByUsername(authentication.getName()).getRole().contains("ADMIN");
+        return isSameUser || isAdmin;
+    }
+
+    private String accessDenied() {
+        return "redirect:/users";
+    }
+
+    private String processUserpageRequest(Model model, String username) {
+        User user = userService.findByUsername(username);
+        model.addAttribute("user", user);
+        return "users/user-page";
+    }
+
+    private String processEditPageRequest(int id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
         return "users/user-editor";
     }
 
-    @PostMapping("/save")
-    public String saveUser(@ModelAttribute User user, Model model) {
-        //ToDo: block unauthorized user edition: only self-edition or by admin
-        //ToDo: Implement validation of user's fields
-        //ToDo: Matching passwords
+    private String processSaveRequest(User user, Model model) {
         if (user.getId() == 0 && !userService.isUsernameAvailable(user.getUsername())) {
             //ToDo: there should be normal warning instead of this quick fix
             user.setUsername("Select other username");
@@ -73,11 +105,8 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/delete")
-    public String deleteUser(@RequestParam int id) {
-        //ToDo: Prevent unauthorized deletes: only admin and self delete
+    private String processDeleteRequest(int id) {
         userService.deleteById(id);
         return "redirect:/users";
     }
-
 }
