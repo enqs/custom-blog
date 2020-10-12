@@ -12,7 +12,7 @@
     <artifactId>custom-blog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>custom-blog</name>
-    <description>My custom attempt to create blogging app</description>
+    <description>My attempt to create custom blogging app</description>
 
     <properties>
         <java.version>14</java.version>
