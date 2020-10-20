@@ -242,56 +242,6 @@ class UserServiceImplTest {
     }
 
     @Test
-    void shouldReturnFalseWhenUsernameIsUnavailable() {
-        //GIVEN
-        userRepository.saveAll(List.of(sampleUserFoo, sampleUserBar, sampleUserBaz));
-
-        //WHEN
-        boolean usernameAvailable = userService.isUsernameAvailable(sampleUserFoo.getUsername());
-
-        //THEN
-        Assertions.assertThat(usernameAvailable).isFalse();
-    }
-
-    @Test
-    void shouldNotModifyNorDeleteOtherEntriesWhenUsernameIsUnavailable() {
-        //GIVEN
-        userRepository.saveAll(List.of(sampleUserFoo, sampleUserBar));
-
-        //WHEN
-        userService.isUsernameAvailable(sampleUserBaz.getUsername());
-
-        //THEN
-        List<User> users = userRepository.findAll();
-        Assertions.assertThat(users).containsExactlyInAnyOrderElementsOf(List.of(sampleUserFoo, sampleUserBar));
-    }
-
-    @Test
-    void shouldReturnTrueWhenUsernameIsAvailable() {
-        //GIVEN
-        userRepository.saveAll(List.of(sampleUserBar, sampleUserBaz));
-
-        //WHEN
-        boolean usernameAvailable = userService.isUsernameAvailable(sampleUserFoo.getUsername());
-
-        //THEN
-        Assertions.assertThat(usernameAvailable).isTrue();
-    }
-
-    @Test
-    void shouldNotModifyNorDeleteOtherEntriesWhenUsernameIsAvailable() {
-        //GIVEN
-        userRepository.saveAll(List.of(sampleUserFoo, sampleUserBar));
-
-        //WHEN
-        userService.isUsernameAvailable(sampleUserBaz.getUsername());
-
-        //THEN
-        List<User> users = userRepository.findAll();
-        Assertions.assertThat(users).containsExactlyInAnyOrderElementsOf(List.of(sampleUserFoo, sampleUserBar));
-    }
-
-    @Test
     void shouldFindUserByUsername() {
         //GIVEN
         userRepository.saveAll(List.of(sampleUserFoo, sampleUserBar));

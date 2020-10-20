@@ -4,6 +4,7 @@ import enqs.customblog.dao.ArticleRepository;
 import enqs.customblog.entity.Article;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void save(Article article) {
+        article.setPublishDate(new Date(System.currentTimeMillis()));
         articleRepository.save(article);
     }
 

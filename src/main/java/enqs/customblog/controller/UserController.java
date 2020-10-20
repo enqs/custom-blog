@@ -31,10 +31,11 @@ public class UserController {
         return "users/users";
     }
 
-    //ToDo: write tests for this ↓↓↓
     @GetMapping("/userpage")
     public String showUserPage(Authentication authentication, Model model) {
-        return Objects.nonNull(authentication) ? processUserpageRequest(model, authentication.getName()) : accessDenied();
+        return isAuthenticated(authentication) ?
+                processUserpageRequest(model, authentication.getName()) :
+                accessDenied();
     }
 
     @GetMapping("/{id}")
@@ -52,24 +53,33 @@ public class UserController {
 
     @GetMapping("/edit")
     public String showUserEditor(@RequestParam int id, Model model, Authentication authentication) {
-        return isAuthorized(id, authentication) ? processEditPageRequest(id, model) : accessDenied();
+        return isAuthorized(id, authentication) ?
+                processEditPageRequest(id, model) :
+                accessDenied();
     }
 
     @PostMapping("/save")
     public String saveUser(@ModelAttribute User user, Model model, Authentication authentication) {
         //ToDo: Implement validation of user's fields
         //ToDo: Matching passwords
-        return user.getId() == 0 || isAuthorized(user.getId(), authentication) ? processSaveRequest(user, model) : accessDenied();
+        return user.getId() == 0 || isAuthorized(user.getId(), authentication) ?
+                processSaveRequest(user, model) :
+                accessDenied();
     }
 
     @GetMapping("/delete")
     public String deleteUser(@RequestParam int id, Authentication authentication) {
-        return isAuthorized(id, authentication) ? processDeleteRequest(id) : accessDenied();
+        return isAuthorized(id, authentication) ?
+                processDeleteRequest(id) :
+                accessDenied();
+    }
+
+    private boolean isAuthenticated(Authentication authentication) {
+        return Objects.nonNull(authentication);
     }
 
     private boolean isAuthorized(int id, Authentication authentication) {
-        boolean isAuthenticated = Objects.nonNull(authentication);
-        return isAuthenticated && hasEditRights(id, authentication);
+        return isAuthenticated(authentication) && hasEditRights(id, authentication);
     }
 
     private boolean hasEditRights(int id, Authentication authentication) {
@@ -95,14 +105,14 @@ public class UserController {
     }
 
     private String processSaveRequest(User user, Model model) {
-        if (user.getId() == 0 && !userService.isUsernameAvailable(user.getUsername())) {
-            //ToDo: there should be normal warning instead of this quick fix
-            user.setUsername("Select other username");
+        try {
+            userService.save(user);
+            return "redirect:/users";
+        } catch (Exception e) {
             model.addAttribute("editedUser", user);
+            model.addAttribute("message", e.getMessage());
             return "users/user-editor";
         }
-        userService.save(user);
-        return "redirect:/users";
     }
 
     private String processDeleteRequest(int id) {

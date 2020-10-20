@@ -17,5 +17,4 @@ public interface UserService extends UserDetailsService {
 
     void deleteById(int id);
 
-    boolean isUsernameAvailable(String username);
 }
