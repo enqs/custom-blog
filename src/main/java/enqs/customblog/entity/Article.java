@@ -91,12 +91,11 @@ public class Article {
                 Objects.equals(getTittle(), article.getTittle()) &&
                 Objects.equals(getImageSource(), article.getImageSource()) &&
                 Objects.equals(getDescription(), article.getDescription()) &&
-                Objects.equals(getContent(), article.getContent()) &&
-                Objects.equals(getPublishDate(), article.getPublishDate());
+                Objects.equals(getContent(), article.getContent());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getTittle(), getImageSource(), getDescription(), getContent(), getPublishDate());
+        return Objects.hash(getId(), getTittle(), getImageSource(), getDescription(), getContent());
     }
 }

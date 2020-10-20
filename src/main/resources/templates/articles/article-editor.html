@@ -8,7 +8,6 @@
         <form class="article-edit-form" method="post" action="#" th:action="@{/articles/save}" th:object="${article}">
 
             <input type="hidden" th:field="*{id}"/>
-            <input type="hidden" th:field="*{publishDate}"/>
 
             <label for="article-tittle">Tittle:</label>
             <input type="text" id="article-tittle" name="article-tittle" th:field="*{tittle}" placeholder="Tittle.">
