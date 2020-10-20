@@ -43,25 +43,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
-        //ToDo: this should cooperate with db or enum
-        user.setRole(Objects.isNull(user.getRole()) ? "ROLE_USER" : user.getRole());
-        //ToDo: throw valid exception instead of generic one
+        User preparedUser = isUserNew(user) ? prepareNewUser(user) : preparePersistedUser(user);
+        userRepository.save(preparedUser);
         user.setPassword(Objects.isNull(user.getPassword()) ?
                 userRepository.findById(user.getId()).orElseThrow().getPassword() :
                 passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
     }
 
     @Override
     public void deleteById(int id) {
         userRepository.deleteById(id);
-    }
-
-    @Override
-    public boolean isUsernameAvailable(String username) {
-        return userRepository.findAll().stream()
-                .map(User::getUsername)
-                .noneMatch(persisted -> Objects.equals(persisted, username));
     }
 
     @Override
@@ -71,5 +62,32 @@ public class UserServiceImpl implements UserService {
                 user.getUsername(),
                 user.getPassword(),
                 List.of(new SimpleGrantedAuthority(user.getRole())));
+    }
+
+    private boolean isUserNew(User user) {
+        return user.getId() == 0;
+    }
+
+    private User prepareNewUser(User user) {
+        if (!isUsernameAvailable(user.getUsername())) {
+            throw new RuntimeException("Username already exists");
+        }
+        user.setRole(Objects.isNull(user.getRole()) ? "ROLE_USER" : user.getRole());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return user;
+    }
+
+    private boolean isUsernameAvailable(String targetUsername) {
+        return userRepository.findAll().stream()
+                .map(User::getUsername)
+                .noneMatch(persistedUsernames -> Objects.equals(persistedUsernames, targetUsername));
+    }
+
+    private User preparePersistedUser(User user) {
+        boolean isPasswordChanged = Objects.isNull(user.getPassword()) || user.getPassword().equals("");
+        user.setPassword(!isPasswordChanged ?
+                passwordEncoder.encode(user.getPassword()) :
+                userRepository.findById(user.getId()).orElseThrow().getPassword());
+        return user;
     }
 }

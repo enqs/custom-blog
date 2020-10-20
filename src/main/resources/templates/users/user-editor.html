@@ -16,6 +16,8 @@
 
                 <input type="hidden" th:field="*{id}"/>
 
+                <div class="message" th:if="${message}" th:text="${message}"></div>
+
                 <div class="edited-data">
                     <label for="user-nick">Nick: </label>
                     <input type="text" id="user-nick" th:field="*{nick}">

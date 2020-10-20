@@ -61,6 +61,7 @@ The working demo is available at [80.211.245.190](http://80.211.245.190)
 * Interactive administration panel
 
 ### To-do list
+* Error handling and messages
 * Display random article
 * Pagination
 * Filter articles
