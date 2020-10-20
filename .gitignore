@@ -1,3 +1,4 @@
+### Application files ###
 target/
 /src/main/resources/application.properties
 
@@ -7,3 +8,5 @@ target/
 *.iml
 *.ipr
 
+### Custom ciles ###
+/ToDo

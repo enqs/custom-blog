@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-//ToDo: If possible extract abstract generic test class for similar services
 @SpringBootTest
 class ArticleServiceImplTest {
 
@@ -27,8 +26,6 @@ class ArticleServiceImplTest {
         articleRepository.deleteAll();
         articleRepository.flush();
         articleService = new ArticleServiceImpl(articleRepository);
-        //ToDo: Check why entity date and persisted date are different
-        //ToDo: Remove those ugly nulls from articles (after solving this ↑ task)
         sampleArticleFoo = new Article(
                 0,
                 "TittleFoo",
@@ -126,7 +123,6 @@ class ArticleServiceImplTest {
         Article article = articleService.findById(targetId);
 
         //THEN
-        //ToDo: Should expect exception
         Assertions.assertThat(article).isEqualToComparingFieldByField(new Article());
     }
 
