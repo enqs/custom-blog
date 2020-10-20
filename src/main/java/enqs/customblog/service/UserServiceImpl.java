@@ -31,7 +31,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(int id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        //ToDo: Throw not found exception with valid response code
         return optionalUser.orElse(new User());
     }
 

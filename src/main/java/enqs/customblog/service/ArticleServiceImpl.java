@@ -27,7 +27,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Article findById(int id) {
         Optional<Article> optionalArticle = articleRepository.findById(id);
-        //TODO: Throw not found exception with valid response code
         return optionalArticle.orElse(new Article());
     }
 

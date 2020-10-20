@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
-//ToDo: If possible extract abstract generic test class for similar services
 @SpringBootTest
 class UserServiceImplTest {
 
@@ -116,7 +115,6 @@ class UserServiceImplTest {
         User user = userService.findById(targetId);
 
         //THEN
-        //ToDo: Should expect exception
         Assertions.assertThat(user).isEqualToComparingFieldByField(new User());
     }
 
