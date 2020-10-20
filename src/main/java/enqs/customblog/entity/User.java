@@ -16,7 +16,6 @@ public class User {
 
     private String password;
 
-    //ToDo: Error-proof by containing roles inside enum or db
     private String role;
 
     private String nick;
@@ -24,8 +23,6 @@ public class User {
     private String firstName;
 
     private String lastName;
-
-    //ToDo: Registration date
 
     public User() {
     }

@@ -20,7 +20,6 @@ public class ArticleController {
 
     @GetMapping
     public String showArticles(Model model) {
-        //ToDo: implement pagination of results
         List<Article> articles = articleService.findAll();
         model.addAttribute("articles", articles);
         return "articles/articles";
@@ -28,8 +27,6 @@ public class ArticleController {
 
     @GetMapping("/browse")
     public String browseArticles() {
-        //ToDo: Implement article search/browse feature
-        //ToDo: Pagination to results
         return "articles/browse";
     }
 
@@ -42,7 +39,6 @@ public class ArticleController {
 
     @GetMapping("/random")
     public String showRandomArticle() {
-        //ToDo: Implement this feature
         return "articles/article";
     }
 

@@ -25,7 +25,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String username = authentication.getName();
         User user = userService.findByUsername(username);
         request.getSession().setAttribute("user", user);
-        //ToDo: Redirect to current page of user
         response.sendRedirect(request.getContextPath() + "/articles");
     }
 }

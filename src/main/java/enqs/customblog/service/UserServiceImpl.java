@@ -31,7 +31,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(int id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        //ToDo: Throw not found exception with valid response code
         return optionalUser.orElse(new User());
     }
 
@@ -45,9 +44,6 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         User preparedUser = isUserNew(user) ? prepareNewUser(user) : preparePersistedUser(user);
         userRepository.save(preparedUser);
-        user.setPassword(Objects.isNull(user.getPassword()) ?
-                userRepository.findById(user.getId()).orElseThrow().getPassword() :
-                passwordEncoder.encode(user.getPassword()));
     }
 
     @Override
@@ -84,8 +80,8 @@ public class UserServiceImpl implements UserService {
     }
 
     private User preparePersistedUser(User user) {
-        boolean isPasswordChanged = Objects.isNull(user.getPassword()) || user.getPassword().equals("");
-        user.setPassword(!isPasswordChanged ?
+        boolean isPasswordChanged = !Objects.isNull(user.getPassword()) && !Objects.equals(user.getPassword(), "");
+        user.setPassword(isPasswordChanged ?
                 passwordEncoder.encode(user.getPassword()) :
                 userRepository.findById(user.getId()).orElseThrow().getPassword());
         return user;

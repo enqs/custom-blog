@@ -44,10 +44,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                //ToDo: Redirect to current page of user
                 .logoutSuccessUrl("/articles")
                 .permitAll();
-        //ToDo: Access-denied page
     }
 
     @Bean
