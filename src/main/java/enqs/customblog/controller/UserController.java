@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Objects;
 
 
-//ToDo: Refactor tests for controllers
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -24,8 +23,6 @@ public class UserController {
 
     @GetMapping
     public String showUsers(Model model) {
-        //ToDo: Implement pagination
-        //ToDo: Implement search utilities
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
         return "users/users";
@@ -60,8 +57,6 @@ public class UserController {
 
     @PostMapping("/save")
     public String saveUser(@ModelAttribute User user, Model model, Authentication authentication) {
-        //ToDo: Implement validation of user's fields
-        //ToDo: Matching passwords
         return user.getId() == 0 || isAuthorized(user.getId(), authentication) ?
                 processSaveRequest(user, model) :
                 accessDenied();
