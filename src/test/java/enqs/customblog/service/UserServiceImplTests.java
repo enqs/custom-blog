@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.List;
 
 @SpringBootTest
-class UserServiceImplTest {
+class UserServiceImplTests {
 
     @Autowired
     private UserRepository userRepository;
