@@ -164,4 +164,72 @@ class UserControllerTests {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.model().attribute("user", Matchers.is(users.get(input - 1))));
     }
+
+    @Test
+    void showUserEditorNewShouldReturnOkStatus() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/new"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void showUserEditorNewShouldReturnUserEditorTemplate() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/new"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.view().name("users/user-editor"));
+    }
+
+    @Test
+    void showUserEditorNewShouldIncludeUserAttributeToModel() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/new"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.model().attributeExists("user"));
+    }
+
+    @Test
+    void showUserEditorNewShouldIncludeEmptyUserToModel() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/new"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.model()
+                        .attribute("user", Matchers.is(new User())));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3"})
+    void showUserEditorEditShouldReturnRedirectionStatusWhenNotAuthenticated(String input) throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/edit").param("id", input))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3"})
+    void showUserEditorEditShouldNotShowWhenNotAuthenticated(String input) throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/edit").param("id", input))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/users"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"2", "3"})
+    @WithMockUser(username = "MockUser")
+    void showUserEditorEditShouldReturnRedirectionStatusWhenUserEditingOthers(String input) throws Exception {
+        Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(sampleUserFoo);
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/edit").param("id", input).sessionAttr("user", new User()))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "2", "3"})
+    @WithMockUser(username = "MockUser")
+    void showUserEditorEditShouldNotShowWhenUserEditingOthers(String input) throws Exception {
+        Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(sampleUserFoo);
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/edit").param("id", input).sessionAttr("user", new User()))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/users"));
+    }
+
+
+
 }
