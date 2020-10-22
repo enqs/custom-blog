@@ -5,6 +5,8 @@ import enqs.customblog.service.UserService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,7 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.List;
 
@@ -31,13 +32,15 @@ class UserControllerTests {
     private User sampleUserFoo;
     private User sampleUserBar;
     private User sampleUserBaz;
+    private List<User> users;
 
     @BeforeEach
     void setUp() {
         sampleUserFoo = new User(1, "Username1", "Password1", "ROLE_USER", "Nick1", "FirstName1", "LastName1");
         sampleUserBar = new User(2, "Username2", "Password2", "ROLE_USER", "Nick2", "FirstName2", "LastName2");
         sampleUserBaz = new User(3, "Username3", "Password3", "ROLE_USER", "Nick3", "FirstName3", "LastName3");
-        Mockito.when(userServiceMock.findAll()).thenReturn(List.of(sampleUserFoo, sampleUserBar, sampleUserBaz));
+        users = List.of(sampleUserFoo, sampleUserBar, sampleUserBaz);
+        Mockito.when(userServiceMock.findAll()).thenReturn(users);
         Mockito.when(userServiceMock.findById(1)).thenReturn(sampleUserFoo);
         Mockito.when(userServiceMock.findById(2)).thenReturn(sampleUserBar);
         Mockito.when(userServiceMock.findById(3)).thenReturn(sampleUserBaz);
@@ -130,4 +133,35 @@ class UserControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attribute("user", Matchers.is(sampleUserFoo)));
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void showUserShouldReturnOkStatus(int input) throws Exception {
+        mockMvc.perform((MockMvcRequestBuilders.get("/users/{id}", input)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void showUserShouldReturnUserDetailsView(int input) throws Exception {
+        mockMvc.perform((MockMvcRequestBuilders.get("/users/{id}", input)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.view().name("users/user-details"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void showUserShouldIncludeUserToModel(int input) throws Exception {
+        mockMvc.perform((MockMvcRequestBuilders.get("/users/{id}", input)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.model().attributeExists("user"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void showUserShouldIncludeTargetUsersDataToModel(int input) throws Exception {
+        mockMvc.perform((MockMvcRequestBuilders.get("/users/{id}", input)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.model().attribute("user", Matchers.is(users.get(input - 1))));
+    }
 }
