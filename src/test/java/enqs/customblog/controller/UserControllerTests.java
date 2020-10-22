@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.List;
 
@@ -78,5 +80,54 @@ class UserControllerTests {
                         .attribute("users", Matchers.hasSize(3)));
     }
 
+    @Test
+    void showUsePageShouldReturnRedirectionStatusWhenNotAuthenticated() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+    }
+
+    @Test
+    void showUserPageShouldNotShowWhenNotAuthenticated() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/users"));
+    }
+
+    @Test
+    @WithMockUser(username = "MockUser")
+    void showUserPageShouldReturnOkStatusWhenAuthenticated() throws Exception {
+        Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(new User());
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage").sessionAttr("user", new User()))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    @WithMockUser(username = "MockUser")
+    void showUserPageShouldShowWhenAuthenticated() throws Exception {
+        Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(new User());
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage").sessionAttr("user", new User()))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.view().name("users/user-page"));
+    }
+
+    @Test
+    @WithMockUser(username = "MockUser")
+    void showUserPageShouldIncludeUserAttributeToModelWhenAuthenticated() throws Exception {
+        Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(sampleUserFoo);
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage").sessionAttr("user", new User()))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.model().attributeExists("user"));
+    }
+
+    @Test
+    @WithMockUser(username = "MockUser")
+    void showUserPageShouldAddAuthenticatedUserDataToModelWhenAuthenticated() throws Exception {
+        Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(sampleUserFoo);
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage").sessionAttr("user", new User()))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.model().attribute("user", Matchers.is(sampleUserFoo)));
+    }
 
 }
