@@ -15,6 +15,7 @@ class ArticleServiceImplTests {
 
     @Autowired
     private ArticleRepository articleRepository;
+
     private ArticleService articleService;
     private Article sampleArticleFoo;
     private Article sampleArticleBar;

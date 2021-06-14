@@ -12,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ class UserServiceImplTests {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     private UserService userService;
     private User sampleUserFoo;
     private User sampleUserBar;
@@ -37,7 +39,6 @@ class UserServiceImplTests {
         sampleUserFoo = new User(0, "Username1", "Password1", "ROLE_USER", "Nick1", "FirstName1", "LastName1");
         sampleUserBar = new User(0, "Username2", "Password2", "ROLE_USER", "Nick2", "FirstName2", "LastName2");
         sampleUserBaz = new User(0, "Username3", "Password3", "ROLE_USER", "Nick3", "FirstName3", "LastName3");
-
     }
 
     @Test

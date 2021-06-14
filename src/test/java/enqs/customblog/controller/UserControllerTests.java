@@ -32,110 +32,54 @@ class UserControllerTests {
     private User sampleUserFoo;
     private User sampleUserBar;
     private User sampleUserBaz;
-    private List<User> users;
+    private User[] users;
 
     @BeforeEach
     void setUp() {
         sampleUserFoo = new User(1, "Username1", "Password1", "ROLE_USER", "Nick1", "FirstName1", "LastName1");
         sampleUserBar = new User(2, "Username2", "Password2", "ROLE_USER", "Nick2", "FirstName2", "LastName2");
         sampleUserBaz = new User(3, "Username3", "Password3", "ROLE_USER", "Nick3", "FirstName3", "LastName3");
-        users = List.of(sampleUserFoo, sampleUserBar, sampleUserBaz);
-        Mockito.when(userServiceMock.findAll()).thenReturn(users);
+        users = new User[]{sampleUserFoo, sampleUserBar, sampleUserBaz};
+        Mockito.when(userServiceMock.findAll()).thenReturn(List.of(users));
         Mockito.when(userServiceMock.findById(1)).thenReturn(sampleUserFoo);
         Mockito.when(userServiceMock.findById(2)).thenReturn(sampleUserBar);
         Mockito.when(userServiceMock.findById(3)).thenReturn(sampleUserBaz);
     }
 
     @Test
-    void showUsersShouldReturnOkStatus() throws Exception {
+    void testShowUsers() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/users"))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("users/users"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("users"))
+                .andExpect(MockMvcResultMatchers.model().attribute("users", Matchers.containsInAnyOrder(users)))
+                .andExpect(MockMvcResultMatchers.model().attribute("users", Matchers.hasSize(3)));
     }
 
     @Test
-    void showUsersShouldReturnUsersTemplate() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/users"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.view().name("users/users"));
-    }
-
-    @Test
-    void showUsersShouldIncludeUsersAttributeToModel() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/users"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.model().attributeExists("users"));
-    }
-
-    @Test
-    void showUsersShouldIncludeUsersProvidedByServiceToModel() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/users"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.model()
-                        .attribute("users", Matchers.containsInAnyOrder(sampleUserFoo, sampleUserBar, sampleUserBaz)));
-    }
-
-    @Test
-    void showUsersShouldIncludeExactUserAmountProvidedByServiceToModel() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/users"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.model()
-                        .attribute("users", Matchers.hasSize(3)));
-    }
-
-    @Test
-    void showUsePageShouldReturnRedirectionStatusWhenNotAuthenticated() throws Exception {
+    void testShowUserPageUnauthorized() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage"))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
-    }
-
-    @Test
-    void showUserPageShouldNotShowWhenNotAuthenticated() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage"))
-                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/users"));
     }
 
     @Test
     @WithMockUser(username = "MockUser")
-    void showUserPageShouldReturnOkStatusWhenAuthenticated() throws Exception {
-        Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(new User());
-        mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage").sessionAttr("user", new User()))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
-
-    @Test
-    @WithMockUser(username = "MockUser")
-    void showUserPageShouldShowWhenAuthenticated() throws Exception {
-        Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(new User());
-        mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage").sessionAttr("user", new User()))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.view().name("users/user-page"));
-    }
-
-    @Test
-    @WithMockUser(username = "MockUser")
-    void showUserPageShouldIncludeUserAttributeToModelWhenAuthenticated() throws Exception {
+    void testShowUserPageAuthorized() throws Exception {
         Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(sampleUserFoo);
         mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage").sessionAttr("user", new User()))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.model().attributeExists("user"));
-    }
-
-    @Test
-    @WithMockUser(username = "MockUser")
-    void showUserPageShouldAddAuthenticatedUserDataToModelWhenAuthenticated() throws Exception {
-        Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(sampleUserFoo);
-        mockMvc.perform(MockMvcRequestBuilders.get("/users/userpage").sessionAttr("user", new User()))
-                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("users/user-page"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("user"))
                 .andExpect(MockMvcResultMatchers.model().attribute("user", Matchers.is(sampleUserFoo)));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    void showUserShouldReturnOkStatus(int input) throws Exception {
+    void testShowUser(int input) throws Exception {
         mockMvc.perform((MockMvcRequestBuilders.get("/users/{id}", input)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -162,7 +106,7 @@ class UserControllerTests {
     void showUserShouldIncludeTargetUsersDataToModel(int input) throws Exception {
         mockMvc.perform((MockMvcRequestBuilders.get("/users/{id}", input)))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.model().attribute("user", Matchers.is(users.get(input - 1))));
+                .andExpect(MockMvcResultMatchers.model().attribute("user", Matchers.is(users[input - 1])));
     }
 
     @Test
@@ -221,7 +165,7 @@ class UserControllerTests {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "2", "3"})
+    @ValueSource(strings = {"2", "3"})
     @WithMockUser(username = "MockUser")
     void showUserEditorEditShouldNotShowWhenUserEditingOthers(String input) throws Exception {
         Mockito.when(userServiceMock.findByUsername("MockUser")).thenReturn(sampleUserFoo);
@@ -229,7 +173,5 @@ class UserControllerTests {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/users"));
     }
-
-
 
 }
