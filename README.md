@@ -6,7 +6,6 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Live Example](#live-example)
 * [Features](#features)
 * [Status](#status)
 
@@ -47,10 +46,7 @@ My goal is to practice coding and learn new stuff while working on a semi real-l
 * Go to `custom-blog\target`
 * Run application `java -jar custom-blog-0.0.1-SNAPSHOT.jar`
 * Blog's website is accessible at localhost 127.0. 0.1 using port 80
- 
 
-## Live Example
-The working demo is available at [80.211.245.190](http://80.211.245.190)
 
 ## Features
 ### Ready features
