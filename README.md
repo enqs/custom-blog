@@ -75,6 +75,6 @@ The working demo is available at [80.211.245.190](http://80.211.245.190)
 * Database backup and restore
 
 ## Status
-Project status: _in progress_.
+Project status: _no longer being worked on_.
 
 
