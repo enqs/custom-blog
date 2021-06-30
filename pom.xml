@@ -15,7 +15,7 @@
     <description>My attempt to create custom blogging app</description>
 
     <properties>
-        <java.version>14</java.version>
+        <java.version>16</java.version>
     </properties>
 
     <dependencies>
